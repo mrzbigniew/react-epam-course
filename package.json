@@ -1,0 +1,22 @@
+{
+  "name": "react-epam-course",
+  "version": "1.0.0",
+  "description": "Project for React Epam course",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrzbigniew/react-epam-course.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Zbigniew Jedraczka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrzbigniew/react-epam-course/issues"
+  },
+  "homepage": "https://github.com/mrzbigniew/react-epam-course#readme"
+}
