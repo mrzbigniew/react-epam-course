@@ -1,1 +1,4 @@
-console.log('My Minimal React Webpack Babel Setup');
+import { React } from 'react';
+import { Renderer } from 'react-dom';
+
+module.hot.accept();
