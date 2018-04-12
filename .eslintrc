@@ -4,7 +4,19 @@
         "react"
     ],
     "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "rules": {},
+    "rules": {
+        "no-trailing-spaces": "error",
+        "no-multiple-empty-lines": [
+            "error", {
+                "max": 1,
+                "maxEOF": 1,
+                "maxBOF": 0
+            }
+        ],
+        "no-empty": ["error", {
+            "allowEmptyCatch": true
+        }]
+    },
     "globals": {
         "module": true
     },
