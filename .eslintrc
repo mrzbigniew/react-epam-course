@@ -1,0 +1,16 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "react",
+        "node-globals"
+    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "rules": {},
+    "globals": {
+        "module": true
+    },
+    "env": {
+        "node": false,
+        "node-globals/env": true
+    }
+}
