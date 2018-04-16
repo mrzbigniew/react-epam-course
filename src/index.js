@@ -23,7 +23,7 @@ class Greater1 extends React.Component {
         })
     }
 
-    onChange(event) {
+    change(event) {
         this.setState({
             data: {
                 value: event.target.value
@@ -35,7 +35,7 @@ class Greater1 extends React.Component {
         return (
             <div>Hello 1: {this.state.data.value}
                 <div>
-                    <input type="text" value={this.state.data.value} onChange={(event) => this.onChange(event)} placeholder=""/>
+                    <input type="text" value={this.state.data.value} onChange={(event) => this.change(event)} placeholder=""/>
                     <button onClick={(event) => this.clean(event)}>clean</button>
                 </div>
             </div>
@@ -63,7 +63,7 @@ class Greater3 extends React.PureComponent {
     }
 }
 
-class Greater4 extends React.PureComponent {
+class Greater4 extends React.Component {
     constructor(params) {
         super(params);
     }
@@ -88,14 +88,14 @@ class Editor extends React.Component {
         this.props.doOnChange(e.target.value); // eslint-disable-line
     }
 
-    shouldComponentUpdate(){
-        return false;
+    shouldComponentUpdate(nextProps){
+        return nextProps.name !== this.props.name; //eslint-disable-line
     }
 
     render() {
         return (
             <div>
-                Child text: <input onChange={(e) => this.change(e)} type="text"/>
+                Child text: <input onChange={(e) => this.change(e)} type="text" value={this.props.name}/>
             </div>
         );
     }
@@ -122,7 +122,7 @@ class Container extends React.Component {
             params: {
                 name: value
             }
-        })
+        });
     }
 
     render() {
@@ -134,7 +134,7 @@ class Container extends React.Component {
                 <Greater2 name={this.state.params.name} />
                 <Greater3 name={this.state.params.name} />
                 <Greater4 name={this.state.params.name} />
-                <Editor  doOnChange={(v) => this.onEditorChange(v)} />
+                <Editor  doOnChange={(v) => this.onEditorChange(v)} name={this.state.params.name}/>
             </div>
         );
     }
