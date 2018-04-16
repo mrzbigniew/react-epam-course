@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const name = 'Stranger';
+
+const element1 = React.createElement('div', null, `Hello ${name}`);
+
 class Greater1 extends React.Component {
     constructor(params) {
         super(params);
@@ -11,8 +15,12 @@ class Greater1 extends React.Component {
         }
     }
 
-    handleChange() {
-
+    clean() {
+        this.setState({
+            data: {
+                value: ''
+            }
+        })
     }
 
     onChange(event) {
@@ -25,10 +33,10 @@ class Greater1 extends React.Component {
 
     render() {
         return (
-            <div>Hello {this.state.data.value}
+            <div>Hello 1: {this.state.data.value}
                 <div>
                     <input type="text" value={this.state.data.value} onChange={(event) => this.onChange(event)} placeholder=""/>
-                    <button onClick={(event) => this.handleChange(event)}>change</button>
+                    <button onClick={(event) => this.clean(event)}>clean</button>
                 </div>
             </div>
         );
@@ -38,12 +46,99 @@ class Greater1 extends React.Component {
 const Greater2 = (params) => {
     return (
         <div>
-            Hello {params.name}
+            Hello 2: {params.name}
         </div>
     )
 }
 
-const name = 'Zbigniew';
+class Greater3 extends React.PureComponent {
+    constructor(params) {
+        super(params);
+    }
+
+    render() {
+        return (
+            <div>Hello 3: {this.props.name}</div> // eslint-disable-line
+        )
+    }
+}
+
+class Greater4 extends React.PureComponent {
+    constructor(params) {
+        super(params);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return nextProps.name !== this.props.name; // eslint-disable-line
+    }
+
+    render() {
+        return (
+            <div>Hello 4: {this.props.name}</div> // eslint-disable-line
+        );
+    }
+}
+
+class Editor extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    change(e) {
+        this.props.doOnChange(e.target.value); // eslint-disable-line
+    }
+
+    shouldComponentUpdate(){
+        return false;
+    }
+
+    render() {
+        return (
+            <div>
+                Child text: <input onChange={(e) => this.change(e)} type="text"/>
+            </div>
+        );
+    }
+}
+
+class Container extends React.Component {
+    constructor(params) {
+        super(params);
+        this.state = {
+            params: params
+        };
+    }
+
+    onChange(e) {
+        this.setState({
+            params: {
+                name: e.target.value
+            }
+        });
+    }
+
+    onEditorChange(value) {
+        this.setState({
+            params: {
+                name: value
+            }
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                Name: <input type="text" value={this.state.params.name} onChange={(e) => { this.onChange(e) }}/>
+                {React.createElement('div', {className: 'first-component'},'Hello: ' + this.state.params.name) }
+                <Greater1 name={this.state.params.name} />
+                <Greater2 name={this.state.params.name} />
+                <Greater3 name={this.state.params.name} />
+                <Greater4 name={this.state.params.name} />
+                <Editor  doOnChange={(v) => this.onEditorChange(v)} />
+            </div>
+        );
+    }
+}
 
 const container = React.createElement(
     'div',
@@ -51,9 +146,11 @@ const container = React.createElement(
         className: 'container'
     },
     <div> Hello World </div>,
-    React.createElement('div', null, `Hello ${name}`),
+    element1,
     <Greater1 name={name}/>,
-    <Greater2 name={name}/>
+    <Greater2 name={name}/>,
+    <Greater3 name={name}/>,
+    <Container name={name}/>
 );
 
 ReactDOM.render(container, document.querySelector('#app'));
