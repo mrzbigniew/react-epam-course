@@ -1,9 +1,11 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
+    context: path.join(__dirname, 'src'),
     entry: [
         'react-hot-loader/patch',
-        './src/index.js'
+        './index.js'
     ],
     output: {
         path: __dirname + '/dist',
@@ -30,6 +32,5 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
-    ],
-    devtool: 'source-map'
+    ]
 }
