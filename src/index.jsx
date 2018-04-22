@@ -13,7 +13,7 @@ const render = () => {
             </TestComponent>
         </AppContainer>,
         document.getElementById('app')
-    )
+    );
 }
 
 render();
