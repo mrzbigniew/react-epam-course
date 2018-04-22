@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import { App } from './app/app';
+// import { App } from './app/app';
+import { TestComponent } from './test';
 
 const render = () => {
     ReactDOM.render(
         <AppContainer>
-            <App />
+            <TestComponent>
+                <span>Some text</span>
+            </TestComponent>
         </AppContainer>,
         document.getElementById('app')
     )
