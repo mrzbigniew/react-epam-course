@@ -1,14 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: path.join(__dirname, 'src'),
     entry: [
         'react-hot-loader/patch',
-        './index.js'
+        './index.jsx'
     ],
-    mode: 'development',
+    // mode: 'development',
+    // devtool: 'source-map',
     output: {
         path: __dirname + '/dist',
         publicPath: '/',
@@ -27,17 +29,25 @@ module.exports = {
             test: /\.js/,
             exclude: /node_modules/,
             use: ['babel-loader', 'eslint-loader']
+        }, {
+            test: /\.scss/,
+            exclude: /node_modules/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         }]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             title: 'React epam course',
             hash: true,
             template: './index.html'
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css'
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }
