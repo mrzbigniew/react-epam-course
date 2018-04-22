@@ -1,5 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -7,6 +8,7 @@ module.exports = {
         'react-hot-loader/patch',
         './index.js'
     ],
+    mode: 'development',
     output: {
         path: __dirname + '/dist',
         publicPath: '/',
@@ -31,6 +33,11 @@ module.exports = {
         extensions: ['*', '.js', '.jsx']
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'React epam course',
+            hash: true,
+            template: './index.html'
+        })
     ]
 }
