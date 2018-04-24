@@ -7,20 +7,20 @@ module.exports = function(env, options) {
     const isProduction = env === 'prod';
 
     const commonPlugins = [
-        new HtmlWebpackPlugin({ // dev, prod
+        new HtmlWebpackPlugin({
             title: 'React epam course',
             hash: true,
             template: './index.html'
         }),
-        new MiniCssExtractPlugin({ // dev, prod
+        new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
         })
     ];
 
     const devPlugins = [
-        new webpack.HotModuleReplacementPlugin(), // dev
-        new webpack.NamedModulesPlugin(), // dev
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ].concat(commonPlugins);
 
     const prodPlugins = [].concat(commonPlugins);
