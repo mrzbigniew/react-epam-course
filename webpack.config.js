@@ -4,11 +4,30 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function(env, options) {
-    const isProduction = options.mode === 'production';
+    const isProduction = env === 'prod';
+
+    const commonPlugins = [
+        new HtmlWebpackPlugin({ // dev, prod
+            title: 'React epam course',
+            hash: true,
+            template: './index.html'
+        }),
+        new MiniCssExtractPlugin({ // dev, prod
+            filename: '[name].css',
+            chunkFilename: '[id].css'
+        })
+    ];
+
+    const devPlugins = [
+        new webpack.HotModuleReplacementPlugin(), // dev
+        new webpack.NamedModulesPlugin(), // dev
+    ].concat(commonPlugins);
+
+    const prodPlugins = [].concat(commonPlugins);
 
     const config = {
         context: path.join(__dirname, 'src'),
-        mode: options.mode,
+        mode: isProduction ? 'production' : 'development',
         entry: [
             'react-hot-loader/patch',
             './index.jsx'
@@ -47,19 +66,7 @@ module.exports = function(env, options) {
         resolve: {
             extensions: ['.js', '.jsx']
         },
-        plugins: [
-            new webpack.HotModuleReplacementPlugin(),
-            new webpack.NamedModulesPlugin(),
-            new HtmlWebpackPlugin({
-                title: 'React epam course',
-                hash: true,
-                template: './index.html'
-            }),
-            new MiniCssExtractPlugin({
-                filename: '[name].css',
-                chunkFilename: '[id].css'
-            })
-        ],
+        plugins: isProduction ? prodPlugins : devPlugins,
         optimization : isProduction ? {
             minimize: true,
             splitChunks: {
