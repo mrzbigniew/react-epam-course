@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "build:prod": "webpack --env prod",
-        "build:dev": "webpack --env dev",
-        "start:dev": "webpack-dev-server --config ./webpack.config.js --env dev",
+        "build:prod": "webpack-cli --mode production",
+        "build:dev": "webpack-cli --mode development",
+        "start:dev": "webpack-dev-server --mode development",
         "start:prod": "npm run build:prod & http-server ./dist"
     },
     "repository": {
