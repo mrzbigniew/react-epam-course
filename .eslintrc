@@ -2,7 +2,8 @@
     "parser": "babel-eslint",
     "plugins": [
         "react",
-        "jest"
+        "jest",
+        "jsx-a11y"
     ],
     "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:jest/recommended"],
     "rules": {
@@ -16,7 +17,8 @@
         ],
         "no-empty": ["error", {
             "allowEmptyCatch": true
-        }]
+        }],
+        "no-undef": "off"
     },
     "globals": {
         "module": true

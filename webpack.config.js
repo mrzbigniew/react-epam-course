@@ -52,7 +52,7 @@ module.exports = function(env, options) {
                 use: ['babel-loader', 'eslint-loader']
             }, {
                 test: /\.scss/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }, {
                 test: /\.(ttf|eot|svg|woff|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
