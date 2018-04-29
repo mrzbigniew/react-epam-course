@@ -1,6 +1,7 @@
 import React from 'react';
 
 import 'bootstrap/scss/bootstrap.scss';
+import ErrorBoundary from '../error-boundary/error-boundary';
 import Container from './components/container/container';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
@@ -14,26 +15,28 @@ import './styles/styles.scss';
 export class App extends React.Component {
     render() {
         return (
-            <Container>
-                    <Header>
-                        <div className="row">
-                            <div className="col-2">
-                                <Logo />
+            <ErrorBoundary>
+                <Container>
+                        <Header>
+                            <div className="row">
+                                <div className="col-2">
+                                    <Logo />
+                                </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12">
-                                <Search />
+                            <div className="row">
+                                <div className="col-6">
+                                    <Search />
+                                </div>
                             </div>
-                        </div>
-                    </Header>
-                    <Content>
-                        <Results />
-                    </Content>
-                    <Footer>
-                        <Logo />
-                    </Footer>
-            </Container>
+                        </Header>
+                        <Content>
+                            <Results />
+                        </Content>
+                        <Footer>
+                            <Logo />
+                        </Footer>
+                </Container>
+            </ErrorBoundary>
         )
     }
 }
