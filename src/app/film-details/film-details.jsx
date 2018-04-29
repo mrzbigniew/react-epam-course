@@ -7,7 +7,6 @@ import MovieTitle from '../components/movie-title/movie-title';
 import MovieRating from '../components/movie-rating/movie-rating';
 import MovieTagline from '../components/movie-tagline/movie-tagline';
 import MovieDescription from '../components/movie-description/movie-description';
-import ResultsCount from '../components/results/components/results-count/results-count';
 import ResultsBody from '../components/results/components/results-body/results-body';
 
 export default class FilmDetails extends React.Component {
@@ -80,7 +79,7 @@ export default class FilmDetails extends React.Component {
                         </div>
                         <div className="col-sm-6 col-md-10">
                             <div className="row no-gutters justify-content-start">
-                                <header><MovieTitle title={this.state.movie.title}/></header>
+                                <div><MovieTitle title={this.state.movie.title}/></div>
                                 <div className="ml-1"><MovieRating rating={this.state.vote_average}/></div>
                             </div>
                             <div>
