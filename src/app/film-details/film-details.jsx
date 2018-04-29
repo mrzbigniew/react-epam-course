@@ -62,12 +62,12 @@ export default class FilmDetails extends React.Component {
             <div className="film-details">
                 <div className="container-fluid">
                     <div className="jumbotron jumbotron-fluid">
-                        <div className="row justify-content-between">
-                            <div className="col">
+                        <div className="row no-gutters">
+                            <div className="col-sm-6">
                                 <Logo/>
                             </div>
-                            <div className="col">
-                                <div className="row justify-content-end">
+                            <div className="col-sm-6">
+                                <div className="row no-gutters justify-content-end">
                                     <Button
                                         label="SEARCH"
                                         className="btn btn-light btn-sm"
