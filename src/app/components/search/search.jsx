@@ -57,11 +57,13 @@ export default class Search extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-10">
+                    <div className="col-sm-6 col-md-12">
                         <SearchFilter buttons={this.filterButtons} onClick={this.setSearchBy}/>
                     </div>
-                    <div className="col-2">
-                        <SearchButton onClick={this.search}/>
+                    <div className="col-sm-6 col-md-12">
+                        <div className="row no-gutters justify-content-end">
+                            <SearchButton onClick={this.search}/>
+                        </div>
                     </div>
                 </div>
             </div>

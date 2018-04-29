@@ -24,7 +24,7 @@ export class App extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6">
+                                <div className="col-xs-12 col-md-6">
                                     <Search />
                                 </div>
                             </div>
