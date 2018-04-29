@@ -16,7 +16,7 @@ export default class ErrorBoundary extends React.Component {
     }
 
     render() {
-        return (!this.error
+        return (!this.state.error
             ? this.props.children
             : <div className="row">
                 <div className="col">
