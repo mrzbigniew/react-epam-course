@@ -8,6 +8,7 @@ import MovieRating from '../components/movie-rating/movie-rating';
 import MovieTagline from '../components/movie-tagline/movie-tagline';
 import MovieDescription from '../components/movie-description/movie-description';
 import ResultsBody from '../components/results/components/results-body/results-body';
+import MovieYear from '../components/movie-year/movie-year';
 
 export default class FilmDetails extends React.Component {
     constructor() {
@@ -58,53 +59,53 @@ export default class FilmDetails extends React.Component {
 
     render() {
         return (
-            <div className="film-details bg-light">
+            <div className="film-details">
                 <div className="container-fluid">
-                    <div className="row justify-content-between">
-                        <div className="col">
-                            <Logo/>
-                        </div>
-                        <div className="col">
-                            <div className="row justify-content-end">
-                                <Button
-                                    label="SEARCH"
-                                    className="btn btn-light btn-sm"
-                                    onClick={this.returnToSearch}/>
+                    <div className="jumbotron jumbotron-fluid">
+                        <div className="row justify-content-between">
+                            <div className="col">
+                                <Logo/>
+                            </div>
+                            <div className="col">
+                                <div className="row justify-content-end">
+                                    <Button
+                                        label="SEARCH"
+                                        className="btn btn-light btn-sm"
+                                        onClick={this.returnToSearch}/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row align-items-center justify-content-start text-text-primary p-3">
-                        <div className="col-sm-6 col-md-2">
-                            <MovieCover src={this.state.movie.poster_path} alt={this.state.movie.title}/>
-                        </div>
-                        <div className="col-sm-6 col-md-10">
-                            <div className="row no-gutters justify-content-start">
-                                <div><MovieTitle title={this.state.movie.title}/></div>
-                                <div className="ml-1"><MovieRating rating={this.state.vote_average}/></div>
+                        <div className="row align-items-center justify-content-start text-text-primary p-3">
+                            <div className="col-sm-6 col-md-2">
+                                <MovieCover src={this.state.movie.poster_path} alt={this.state.movie.title}/>
                             </div>
-                            <div>
-                                <MovieTagline tagline={this.state.movie.tagline}/>
-                            </div>
-                            <div className="row no-gutters">
-                                <div className="col-2 font-weight-bold">{this
-                                        .state
-                                        .movie
-                                        .release_date
-                                        .split('-')[0]}</div>
-                                <div className="col-2 font-weight-bold">{this.state.movie.runtime}min</div>
-                            </div>
-                            <div className="row no-gutters">
-                                <MovieDescription description={this.state.movie.overview}/>
+                            <div className="col-sm-6 col-md-10">
+                                <div className="row no-gutters justify-content-start">
+                                    <div><MovieTitle title={this.state.movie.title}/></div>
+                                    <div className="ml-1"><MovieRating rating={this.state.vote_average}/></div>
+                                </div>
+                                <div>
+                                    <MovieTagline tagline={this.state.movie.tagline}/>
+                                </div>
+                                <div className="row no-gutters">
+                                    <div className="col-2 font-weight-bold"><MovieYear release_date={this.state.movie.release_date} /></div>
+                                    <div className="col-2 font-weight-bold">{this.state.movie.runtime}min</div>
+                                </div>
+                                <div className="row no-gutters">
+                                    <MovieDescription description={this.state.movie.overview}/>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div className="row">
                         <div className="col-12">
                             <div className="bg-dark text-light p-3">
-                                Films by {this.state.movie.genres[0]} genre
+                                Films by {this.state.movie.genres[0]}
+                                genre
                             </div>
                             <div>
-                                <ResultsBody movies={this.state.movies} />
+                                <ResultsBody movies={this.state.movies}/>
                             </div>
                         </div>
                     </div>
