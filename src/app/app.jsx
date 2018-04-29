@@ -7,6 +7,7 @@ import Footer from './components/footer/footer';
 import Content from './components/content/content';
 import Logo from '../components/logo/logo';
 import Search from './components/search/search';
+import Results from './components/results/results';
 
 import './styles/styles.scss';
 
@@ -27,7 +28,7 @@ export class App extends React.Component {
                         </div>
                     </Header>
                     <Content>
-
+                        <Results />
                     </Content>
                     <Footer>
                         <Logo />
