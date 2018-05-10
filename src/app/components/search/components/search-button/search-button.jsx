@@ -4,7 +4,9 @@ import Button from '../../../../../components/button/button';
 
 const SearchButton = ({onClick}) => {
     return(
-        <Button className="brn btn-primary btn-sm" label={'search'} onClick={onClick} />
+        <div className="search-button">
+            <Button className="brn btn-primary btn-sm" label={'search'} onClick={onClick} />
+        </div>
     )
 }
 

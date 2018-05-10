@@ -5,7 +5,7 @@ import './styles/styles.scss';
 
 const Header = ({children}) => {
     return (
-        <div className="jumbotron jumbotron-fluid">
+        <div className="header">
             <div className="container-fluid">
                 {children}
             </div>

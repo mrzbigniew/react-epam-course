@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Content = ({children}) => {
     return (
-        <div className="container-fluid">
+        <div>
             {children}
         </div>
     )

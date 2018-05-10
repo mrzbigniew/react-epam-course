@@ -5,6 +5,7 @@ import SearchField from './components/search-field/search-field';
 import SearchFilter from './components/search-filter/search-filter';
 import SearchButton from './components/search-button/search-button';
 
+import './styles/styles.scss';
 export default class Search extends React.Component {
     filterButtons = [
         {
@@ -50,13 +51,13 @@ export default class Search extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="row">
+            <div className="search">
+                <div className="row no-gutters">
                     <div className="col-12">
-                        <SearchField onKeyUp={this.onSearchFieldKeyUp}/>
+                        <SearchField onKeyUp={this.onSearchFieldKeyUp} placeholder="Search for movie"/>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row no-gutters">
                     <div className="col-sm-6 col-md-12">
                         <SearchFilter buttons={this.filterButtons} onClick={this.setSearchBy}/>
                     </div>

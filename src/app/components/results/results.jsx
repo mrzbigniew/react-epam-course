@@ -54,14 +54,16 @@ export default class Results extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="col-sm-12 col-md-6">
-                        <ResultsCount moviesAmount={this.state.movies.length}/>
-                    </div>
-                    <div className="col-sm-12 col-md-6">
-                        <div className="d-flex justify-content-end align-items-end">
-                            <ResultsSort sortConfig={this.state.sortConfig} onClick={this.sortChange}/>
+            <div className="results">
+                <div className="results-summary">
+                    <div className="row no-gutters align-items-center">
+                        <div className="col-sm-12 col-md-6">
+                            <ResultsCount moviesAmount={this.state.movies.length}/>
+                        </div>
+                        <div className="col-sm-12 col-md-6">
+                            <div className="d-flex justify-content-end align-items-end">
+                                <ResultsSort sortConfig={this.state.sortConfig} onClick={this.sortChange}/>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import Button from '../../../../../components/button/button';
 
 const ResultsSort = ({sortConfig, onClick}) => {
     return (
-        <div>
+        <div className="results-sort">
             <b>Sort by:</b> {sortConfig.map(item => <Button
                 key={item.label}
                 className={`btn btn-sm btn-${item.selected

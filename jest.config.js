@@ -4,7 +4,15 @@ module.exports = {
         '\\.(scss|css)$' : '<rootDir>/src/__mocks__/styleMock.js'
     },
     testMatch: [
-        '**/*.spec.(js|jsx)'
+        '**/*.spec.(js|jsx)',
     ],
-    verbose: true
+    verbose: true,
+    collectCoverage: true,
+    collectCoverageFrom: [
+        'src/**/*.{js,jsx}',
+        '!src/index.jsx',
+        '!**/*.{css,scss}',
+        '!**/node_modules/**',
+        '!src/__tests__/**'
+    ]
 }

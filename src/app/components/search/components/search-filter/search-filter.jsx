@@ -5,7 +5,7 @@ import Button from '../../../../../components/button/button';
 
 const SearchFilter = ({buttons, onClick}) => {
     return (
-        <div>
+        <div className="search-filter">
             <label>Search by:</label> {buttons.map((button, index) => (<Button
                     className={`ml-2 btn btn-sm btn-${button.selected
                     ? 'primary'
