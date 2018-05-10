@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Content = ({children}) => {
     return (
-        <div>
+        <div className="content">
             {children}
         </div>
     )

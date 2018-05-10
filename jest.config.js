@@ -1,5 +1,5 @@
 module.exports = {
-    setupTestFrameworkScriptFile: './node_modules/jest-enzyme/lib/index.js',
+    setupTestFrameworkScriptFile: "./enzyme.config.js",
     moduleNameMapper: {
         '\\.(scss|css)$' : '<rootDir>/src/__mocks__/styleMock.js'
     },
@@ -10,9 +10,9 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: [
         'src/**/*.{js,jsx}',
+        '!src/**/*.spec.{js,jsx}',
         '!src/index.jsx',
         '!**/*.{css,scss}',
-        '!**/node_modules/**',
-        '!src/__tests__/**'
+        '!**/node_modules/**'
     ]
 }

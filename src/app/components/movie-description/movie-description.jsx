@@ -5,9 +5,9 @@ import './styles/styles.scss';
 
 const MovieDescription = ({description}) => {
     return (
-        <article className="movies-description">
+        <div className="movies-description">
             <p>{description}</p>
-        </article>
+        </div>
     );
 }
 
