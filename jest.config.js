@@ -1,8 +1,10 @@
 module.exports = {
+    setupTestFrameworkScriptFile: './node_modules/jest-enzyme/lib/index.js',
     moduleNameMapper: {
-        '\\.(scss|css)$' : '<rootDir>/__mocks__/styleMock.js'
+        '\\.(scss|css)$' : '<rootDir>/src/__mocks__/styleMock.js'
     },
     testMatch: [
-        '**/*.(spec|test).js?(x)'
-    ]
+        '**/*.spec.(js|jsx)'
+    ],
+    verbose: true
 }

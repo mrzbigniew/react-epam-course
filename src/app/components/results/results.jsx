@@ -13,26 +13,7 @@ export default class Results extends React.Component {
 
         this.state = {
             sortBy: 'release_date',
-            movies: [
-                {
-                    id: 240,
-                    title: "The Godfather: Part II",
-                    tagline: "I don't feel I have to wipe everybody out, Tom. Just my enemies.",
-                    vote_average: 8.4,
-                    vote_count: 4308,
-                    release_date: '1974-12-20',
-                    poster_path: "https://image.tmdb.org/t/p/w500/bVq65huQ8vHDd1a4Z37QtuyEvpA.jpg",
-                    overview: `In the continuing saga of the Corleone crime family, a young Vito Corleone grows
-                        up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to
-                        expand the family business into Las Vegas, Hollywood and Cuba.`,
-                    budget: 13000000,
-                    revenue: 102600000,
-                    genres: [
-                        "Drama", "Crime"
-                    ],
-                    runtime: 200
-                }
-            ],
+            movies: [],
             sortConfig: [
                 {
                     value: 'release_date',
