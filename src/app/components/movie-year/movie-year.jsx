@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieYear = ({release_date}) => {
+const MovieYear = ({year}) => {
     return (
-        <span>{release_date.split('-')[0]}</span>
+        <span className="movie-year">{year}</span>
     );
 }
 
 MovieYear.propTypes = {
-    release_date: PropTypes.string
+    year: PropTypes.number
 }
 
 export default MovieYear;

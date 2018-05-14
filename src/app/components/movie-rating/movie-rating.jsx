@@ -5,8 +5,8 @@ import './styles/styles.scss';
 
 const MovieRating = ({rating}) => {
     return (
-        <span className="movie-rating">{rating | 0}</span>
-    )
+        <span className="movie-rating">{rating || 0}</span>
+    );
 }
 
 MovieRating.propTypes = {

@@ -9,6 +9,7 @@ import MovieTagline from '../components/movie-tagline/movie-tagline';
 import MovieDescription from '../components/movie-description/movie-description';
 import ResultsBody from '../components/results/components/results-body/results-body';
 import MovieYear from '../components/movie-year/movie-year';
+import {parseDate, getYear} from '../../services/common/date-helper/date-helper';
 
 export default class FilmDetails extends React.Component {
     constructor() {
@@ -88,7 +89,7 @@ export default class FilmDetails extends React.Component {
                                     <MovieTagline tagline={this.state.movie.tagline}/>
                                 </div>
                                 <div className="row no-gutters">
-                                    <div className="col-2 font-weight-bold"><MovieYear release_date={this.state.movie.release_date} /></div>
+                                    <div className="col-2 font-weight-bold"><MovieYear release_date={getYear(parseDate(this.state.movie.release_date))} /></div>
                                     <div className="col-2 font-weight-bold">{this.state.movie.runtime}min</div>
                                 </div>
                                 <div className="row no-gutters">

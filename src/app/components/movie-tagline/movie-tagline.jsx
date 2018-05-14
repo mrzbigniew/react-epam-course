@@ -10,7 +10,7 @@ const MovieTagline = ({tagline}) => {
 }
 
 MovieTagline.propTypes = {
-    tagline: PropTypes.string
+    tagline: PropTypes.string.isRequired
 }
 
 export default MovieTagline;

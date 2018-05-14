@@ -5,11 +5,12 @@ import ResultsItem from '../results-item/results-item';
 
 import MovieItemDataModel from '../../../../../models/movie-item/movie-item.model';
 
-const ResultsBody = ({movies}) => {
+const ResultsBody = ({movies, onMovieClick}) => {
     return (
-        <div>
+        <div className="results-body">
             {movies && movies.length
                 ? movies.map(movie => (<ResultsItem
+                    onClick={() => onMovieClick(movie)}
                     key={movie.id}
                     poster_path={movie.poster_path}
                     title={movie.title}
@@ -22,7 +23,8 @@ const ResultsBody = ({movies}) => {
 }
 
 ResultsBody.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel))
+    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel)).isRequired,
+    onMovieClick: PropTypes.func.isRequired
 }
 
 export default ResultsBody;
