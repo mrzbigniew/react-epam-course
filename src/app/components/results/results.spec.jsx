@@ -143,19 +143,20 @@ describe('Results', () => {
             const instance = wrapper.instance();
             const sortFooFactory = (byKey) => {
                 return (current, next) => {
-                    return current[byKey] === next[byKey]
-                        ? 0
-                        : (current[byKey] > next[byKey]
-                            ? 1
-                            : -1);
+                    return current[byKey] === next[byKey] ? 0 : (current[byKey] > next[byKey] ? 1 : -1);
                 }
             }
-            let excepted;
+            let excepted, sortedMovies;
 
             instance.sortChange(sortConfig.defaultSort);
-            const sortedMoviesByVoteAvarange = instance.getSortedMovies();
+            sortedMovies = instance.getSortedMovies();
             excepted = movies.sort(sortFooFactory(sortConfig.defaultSort));
-            expect(sortedMoviesByVoteAvarange).toEqual(excepted);
+            expect(sortedMovies).toEqual(excepted);
+
+            instance.sortChange(sortConfig.items[0].value);
+            sortedMovies = instance.getSortedMovies();
+            excepted = movies.sort(sortFooFactory(sortConfig.items[0].value));
+            expect(sortedMovies).toEqual(excepted);
         });
     });
 });
