@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import './styles/styles.scss';
 
-const Container = ({children}) => {
+const Footer = ({children}) => {
     return (
-        <div className="container">
+        <div className="footer">
             {children}
         </div>
-    );
+    )
 }
 
-Container.propTypes = {
+Footer.propTypes = {
     children: PropTypes.node
 }
 
-export default Container;
+export default Footer;
