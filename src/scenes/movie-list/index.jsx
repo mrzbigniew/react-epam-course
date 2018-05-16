@@ -15,6 +15,7 @@ const MovieList = () => {
     return (
         <Container>
             <Header>
+                <Logo />
                 <SearchForm />
             </Header>
             <Content>

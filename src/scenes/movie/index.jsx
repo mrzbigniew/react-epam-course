@@ -6,15 +6,20 @@ import Footer from '../../components/footer';
 import Content from '../../components/content';
 import Logo from '../../components/logo';
 
-import MovieDetails from './components/search-form';
+import BackToSearch from './components/back-to-search';
+import MovieDetails from './components/movie-details';
 import ResultsList from './components/results-list';
 
 import './styles/styles.scss';
 
-const MovieList = () => {
+const Movie = () => {
     return (
         <Container>
             <Header>
+                <div className="row no-gutters justify-content-between">
+                    <Logo />
+                    <BackToSearch />
+                </div>
                 <MovieDetails />
             </Header>
             <Content>
@@ -27,4 +32,4 @@ const MovieList = () => {
     );
 };
 
-export default MovieList;
+export default Movie;

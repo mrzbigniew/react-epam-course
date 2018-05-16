@@ -6,16 +6,17 @@ import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
 const ResultsBody = ({movies, onMovieClick}) => {
+    console.log(movies); // eslint-disable-line
     return (
         <div className="results-body">
             {movies && movies.length
-                ? movies.map(movie => (<ResultsItem
-                    onClick={() => onMovieClick(movie)}
-                    key={movie.id}
-                    poster_path={movie.poster_path}
-                    title={movie.title}
-                    genre={movie.genres[0]}
-                    release_year={movie.release_date.split('-')[0]}
+                ? movies.map(movie => (
+                    <ResultsItem key={movie.id}
+                                 poster_path={movie.poster_path}
+                                 title={movie.title}
+                                 genre={movie.genres[0]}
+                                 release_year={movie.release_date.split('-')[0]}
+                                 onClick={() => onMovieClick(movie)}
                     />))
                 : <NoResults/>}
         </div>

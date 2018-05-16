@@ -7,8 +7,8 @@
         "test": "jest",
         "build:prod": "webpack-cli --mode production",
         "build:dev": "webpack-cli --mode development",
-        "start:dev": "webpack-dev-server --mode development",
-        "start:prod": "npm run build:prod & http-server ./dist"
+        "serve:dev": "webpack-dev-server --mode development",
+        "serve:prod": "npm run build:prod & http-server ./dist"
     },
     "repository": {
         "type": "git",
