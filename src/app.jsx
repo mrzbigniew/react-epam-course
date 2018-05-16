@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Home from './scenes/home';
+import MovieList from './scenes/movie-list';
 
 import 'bootstrap/scss/bootstrap.scss';
 import './styles/reset.scss';
 
 const App = () => {
     return (
-        <Home />
+        <MovieList />
     );
 };
 

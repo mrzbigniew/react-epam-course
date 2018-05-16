@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NoResults from '../no-results/no-results';
-import ResultsItem from '../results-item/results-item';
 
-import MovieItemDataModel from '../../../../../models/movie-item/movie-item.model';
+import NoResults from '../no-results/';
+import ResultsItem from '../results-item/';
+import MovieItemDataModel from '../../services/models';
 
 const ResultsBody = ({movies, onMovieClick}) => {
     return (

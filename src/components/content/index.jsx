@@ -5,7 +5,7 @@ import './styles/styles.scss';
 
 const Content = ({children}) =>  {
     return (
-        <div className="content">
+        <div className="content-expand">
             {children}
         </div>
     );
