@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-import MovieRating from './movie-rating';
+import MovieRating from './index';
 
 describe('MovieRating', () => {
     it('renders', () => {

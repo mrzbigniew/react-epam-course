@@ -6,7 +6,6 @@ import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
 const ResultsBody = ({movies, onMovieClick}) => {
-    console.log(movies); // eslint-disable-line
     return (
         <div className="results-body">
             {movies && movies.length

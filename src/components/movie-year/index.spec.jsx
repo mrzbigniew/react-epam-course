@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-import MovieYear from './movie-year';
+import MovieYear from './index';
 
 describe('MovieYear', () => {
     it('renders', () => {

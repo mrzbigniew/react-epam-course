@@ -2,14 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-import MovieTitle from './movie-title';
+import MovieTitle from './index';
 
 describe('MovieTitle', () => {
     it('renders', () => {
         const movieTitle = 'title';
-        const componet = renderer.create(<MovieTitle title={movieTitle}/>).toJSON();
+        const component = renderer.create(<MovieTitle title={movieTitle}/>).toJSON();
 
-        expect(componet).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 
     it('creates element with movie-title class and correct tittle', () => {

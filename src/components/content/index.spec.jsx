@@ -10,16 +10,18 @@ describe('Content', () => {
         expect(component).toMatchSnapshot();
     });
 
-    it('renders element with content class name', () => {
-        const wrapper = shallow(<Content><span></span></Content>);
+    describe('wrapper', () => {
+        it('renders element with content-expand class name', () => {
+            const wrapper = shallow(<Content><span></span></Content>);
 
-        expect(wrapper.hasClass('content')).toBeTruthy();
-    });
+            expect(wrapper.hasClass('content-expand')).toBeTruthy();
+        });
 
-    it('renders childrens', () => {
-        const exceptedContent = 'test content';
-        const wrapper = shallow(<Content>{exceptedContent}</Content>);
+        it('renders childrens', () => {
+            const exceptedContent = 'test content';
+            const wrapper = shallow(<Content>{exceptedContent}</Content>);
 
-        expect(wrapper.text()).toEqual(exceptedContent);
+            expect(wrapper.text()).toEqual(exceptedContent);
+        });
     });
 });

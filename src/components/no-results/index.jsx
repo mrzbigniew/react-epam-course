@@ -4,7 +4,7 @@ import './styles/styles.scss';
 
 const NoResults = () => {
     return (
-        <div className="no-results-found">
+        <div className="no-results">
             <span>No films found</span>
         </div>
     )

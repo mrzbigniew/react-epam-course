@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-import MovieDescription from './movie-description';
+import MovieDescription from './index';
 
 describe('MovieDescription', () => {
     it('renders', () => {
@@ -15,10 +15,10 @@ describe('MovieDescription', () => {
 
     it('should create div element contains paragraph with proper description', () => {
         const description = "test description";
-        const warepper = shallow(<MovieDescription description={description}/>);
+        const wrapper = shallow(<MovieDescription description={description}/>);
 
-        expect(warepper.is('div')).toBeTruthy();
-        expect(warepper.hasClass('movies-description')).toBeTruthy();
-        expect(warepper.first('p').text()).toEqual(description);
+        expect(wrapper.is('div')).toBeTruthy();
+        expect(wrapper.hasClass('movies-description')).toBeTruthy();
+        expect(wrapper.first('p').text()).toEqual(description);
     });
 });

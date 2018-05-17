@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-import MovieCover from './movie-cover';
+import MovieCover from './index';
 
-jest.mock('./../../../components/movie-image/movie-image', () => 'img');
+jest.mock('../movie-image', () => 'img');
 
 describe('MovieCover', () => {
     it('renders', () => {
@@ -16,8 +16,12 @@ describe('MovieCover', () => {
     });
 
     it('should create img element with movie-cover class name', () => {
-        const movieCover = shallow(<MovieCover src="src" alt="alt"/>);
+        const alt = `alternative image text`;
+        const src = `/path/to/image.jpg`;
+        const movieCover = shallow(<MovieCover src={src} alt={alt}/>);
         expect(movieCover.is('img')).toBeTruthy();
         expect(movieCover.hasClass('movie-cover')).toBeTruthy();
+        expect(movieCover.find('img').find('[src]').props().src).toEqual(src);
+        expect(movieCover.find('img').find('[alt]').props().alt).toEqual(alt);
     });
 });

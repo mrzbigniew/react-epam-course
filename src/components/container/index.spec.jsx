@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Container from './index';
 
@@ -10,16 +10,18 @@ describe('Container', () => {
         expect(component).toMatchSnapshot();
     });
 
-    it('renders element with container-fluid class name', () => {
-        const wrapper = shallow(<Container><span></span></Container>);
+    describe('wrapper', () => {
+        it('renders element with container-fluid class name', () => {
+            const wrapper = shallow(<Container><span></span></Container>);
 
-        expect(wrapper.hasClass('container-fluid')).toBeTruthy();
-    });
+            expect(wrapper.hasClass('container-fluid')).toBeTruthy();
+        });
 
-    it('renders childrens', () => {
-        const exceptedContent = 'test content';
-        const wrapper = shallow(<Container>{exceptedContent}</Container>);
+        it('renders children\'s', () => {
+            const exceptedContent = 'test content';
+            const wrapper = shallow(<Container>{exceptedContent}</Container>);
 
-        expect(wrapper.text()).toEqual(exceptedContent);
+            expect(wrapper.text()).toEqual(exceptedContent);
+        });
     });
 });
