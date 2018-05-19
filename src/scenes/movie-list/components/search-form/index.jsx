@@ -11,9 +11,9 @@ export default class SearchForm extends React.Component {
         console.log('search'); // eslint-disable-line
     }
 
-    searchFieldChange = (value, key) => {
-        console.log('searchFieldChange', value, key); // eslint-disable-line
-        if(key === 'Enter') {
+    searchFieldChange = (event) => {
+        console.log('searchFieldChange', event); // eslint-disable-line
+        if(event.key === 'Enter') {
             this.triggerSearch();
         }
     }

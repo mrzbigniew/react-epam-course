@@ -14,7 +14,7 @@ const SearchField = ({onKeyUp, placeholder, label}) => {
                 <div>
                     <input id="searchInput"
                            className="form-control"
-                           onKeyUp={(event) => onKeyUp(event.target.value, event.key)}
+                           onKeyUp={(event) => onKeyUp(event)}
                            placeholder={placeholder}/>
                 </div>
             </div>

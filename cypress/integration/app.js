@@ -22,6 +22,7 @@ describe('App', () => {
                 .type('a')
                 .type('b')
                 .type('c')
+                .type('{enter}')
                 .should('have.value', 'abc');
             });
         });

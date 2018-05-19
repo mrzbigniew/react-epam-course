@@ -52,11 +52,11 @@ describe('SearchField', () => {
                         value: text.slice(0, index+1)
                     }
                 });
-                expect(props.onKeyUp.mock.calls[index][1]).toEqual(char);
+                expect(props.onKeyUp.mock.calls[index][0].key).toEqual(char);
             });
 
             expect(props.onKeyUp.mock.calls).toHaveLength(text.length);
-            expect(props.onKeyUp.mock.calls[text.length-1][0]).toEqual(text);
+            expect(props.onKeyUp.mock.calls[text.length-1][0].target.value).toEqual(text);
         });
     });
 });

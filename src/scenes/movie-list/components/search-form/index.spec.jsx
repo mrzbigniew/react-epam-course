@@ -42,15 +42,20 @@ describe('SearchForm', () => {
         });
 
         it('searchFieldChange: works', () => {
-            let expected = 'some text';
-            let key = 's';
-            wrapper.instance().searchFieldChange(expected, key);
+            const expected = {
+                key: 'A',
+                target: {
+                    value: 'A'
+                }
+            }
+            wrapper.instance().searchFieldChange(expected);
             expect(mockFoo).toBeCalled();
-            expect(mockFoo).toBeCalledWith('searchFieldChange', expected, key);
+            expect(mockFoo).toBeCalledWith('searchFieldChange', expected);
 
             mockFoo.mockClear();
             const spy = jest.spyOn(wrapper.instance(), 'triggerSearch');
 
+            expected.key = 'Enter';
             wrapper.instance().searchFieldChange(expected, 'Enter');
             expect(spy).toBeCalled();
             expect(mockFoo.mock.calls[1][0]).toEqual('search');
