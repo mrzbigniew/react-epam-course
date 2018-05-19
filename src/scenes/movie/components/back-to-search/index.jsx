@@ -4,15 +4,18 @@ import Button from '../../../../components/button';
 
 import './styles/styles.scss';
 
-export default class BackToSearch extends React.Component {
+const BackToSearch = () => {
 
-    backToSearchClick = () => {
+    const backToSearchClick = () => {
         console.log('backToSearchClick'); // eslint-disable-line
     }
 
-    render() {
-        return (
-            <Button className="back-to-search btn btn-sm btn-light" onClick={this.backToSearchClick} label="search"/>
-        )
-    }
+    return (
+        <Button className="back-to-search btn btn-sm btn-light"
+                onClick={backToSearchClick}
+                label="search"
+        />
+    );
 }
+
+export default BackToSearch;

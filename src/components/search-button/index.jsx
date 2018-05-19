@@ -4,10 +4,14 @@ import Button from '../button';
 
 import './styles/styles.scss';
 
-const SearchButton = ({onClick}) => {
-    return(
+const SearchButton = ({ onClick }) => {
+    return (
         <div className="search-button">
-            <Button className="brn btn-primary btn-sm" label={'search'} onClick={onClick} />
+            <Button
+                className="brn btn-primary btn-sm"
+                label={'search'}
+                onClick={onClick}
+            />
         </div>
     )
 }

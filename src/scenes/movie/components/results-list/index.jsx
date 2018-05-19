@@ -8,29 +8,24 @@ import ResultsGenreInfo from '../../../../components/results-genre-info';
 
 import moviesList from '../../../../__mocks__/movies';
 
-export default class ResultsList extends React.Component {
-    movies = [];
-    genre = 'drama';
+const ResultsList = () => {
+    const genre = 'drama';
+    const movies = moviesList;
 
-    constructor(props) {
-        super(props);
-        this.movies = moviesList;
-    }
-
-    movieClick = (movie) => {
+    const movieClick = (movie) => {
         console.log('movieClick', movie); // eslint-disable-line
     }
 
-    render() {
-        return (
+    return (
+        <Content>
+            <Navbar className="navbar-expand-lg navbar-light bg-light justify-content-between">
+                <ResultsGenreInfo genre={genre}/>
+            </Navbar>
             <Content>
-                <Navbar className="navbar-expand-lg navbar-light bg-light justify-content-between">
-                    <ResultsGenreInfo genre={this.genre}/>
-                </Navbar>
-                <Content>
-                    <ResultsBody movies={this.movies} onMovieClick={this.movieClick}/>
-                </Content>
+                <ResultsBody movies={movies} onMovieClick={movieClick}/>
             </Content>
-        );
-    }
+        </Content>
+    );
 }
+
+export default ResultsList;

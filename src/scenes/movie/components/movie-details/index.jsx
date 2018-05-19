@@ -10,40 +10,39 @@ import MovieDescription from '../../../../components/movie-description';
 
 import moviesList from '../../../../__mocks__/movies';
 
-export default class MovieDetails extends React.Component {
-    movie = moviesList[0];
-
-    render() {
-        return (
-            <div className="movie-details">
-                <div className="d-flex align-items-stretch justify-content-start m-2">
-                    <div className="d-flex align-items-center justify-content-center p-3 w-25">
-                        <MovieCover src={this.movie.poster_path} alt={this.movie.title} />
-                    </div>
-                    <div className="d-flex align-items-center p2 w-75">
-                        <div className="pl-3">
-                            <div className="d-flex justify-content-start">
-                                <div className="mr-3">
-                                    <MovieTitle title={this.movie.title}/>
-                                </div>
-                                <MovieRating rating={this.movie.vote_average}/>
+const MovieDetails = () => {
+    const movie = moviesList[0];
+    return (
+        <div className="movie-details">
+            <div className="d-flex align-items-stretch justify-content-start m-2">
+                <div className="d-flex align-items-center justify-content-center p-3 w-25">
+                    <MovieCover src={movie.poster_path} alt={movie.title} />
+                </div>
+                <div className="d-flex align-items-center p2 w-75">
+                    <div className="pl-3">
+                        <div className="d-flex justify-content-start">
+                            <div className="mr-3">
+                                <MovieTitle title={movie.title} />
                             </div>
-                            <div>
-                                <MovieTagline tagline={this.movie.tagline}/>
+                            <MovieRating rating={movie.vote_average} />
+                        </div>
+                        <div>
+                            <MovieTagline tagline={movie.tagline} />
+                        </div>
+                        <div className="d-flex justify-content-start">
+                            <div className="mr-5">
+                                <MovieYear year={new Date(movie.release_date).getFullYear()} />
                             </div>
-                            <div className="d-flex justify-content-start">
-                                <div className="mr-5">
-                                    <MovieYear year={new Date(this.movie.release_date).getFullYear()}/>
-                                </div>
-                                <MovieDuration duration={this.movie.runtime} />
-                            </div>
-                            <div>
-                                <MovieDescription description={this.movie.overview} />
-                            </div>
+                            <MovieDuration duration={movie.runtime} />
+                        </div>
+                        <div>
+                            <MovieDescription description={movie.overview} />
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
+
+export default MovieDetails;

@@ -24,7 +24,7 @@ export default class ResultsList extends React.Component {
 
     sortByClick = (sortBy) => {
         this.sortBy = sortBy;
-        console.log('movieClick', sortBy); //eslint-disable-line
+        console.log('sortByClick', sortBy); //eslint-disable-line
     }
 
     render() {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ResultsGenreInfo = ({genre}) => {
     return (
-        <span>{`Films by ${genre.toLowerCase()} genre`}</span>
+        <span className="results-genre-info">{`Films by ${genre.toLowerCase()} genre`}</span>
     );
 };
 

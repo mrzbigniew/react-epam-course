@@ -17,7 +17,7 @@ const ResultsItem = ({poster_path, title, release_year, genre, onClick}) => {
                 <span>{release_year}</span>
             </div>
             <div className="w-100 d-flex justify-content-start align-items-start">
-                {genre || ''}
+                {genre}
             </div>
         </div>
     );
