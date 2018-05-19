@@ -47,10 +47,12 @@ describe('SearchField', () => {
             const text = 'movie';
             text.split('').forEach((char, index) => {
                 wrapper.find('input').at(0).simulate('keyup', {
+                    key: char,
                     target: {
                         value: text.slice(0, index+1)
                     }
                 });
+                expect(props.onKeyUp.mock.calls[index][1]).toEqual(char);
             });
 
             expect(props.onKeyUp.mock.calls).toHaveLength(text.length);

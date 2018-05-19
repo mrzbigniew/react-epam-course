@@ -7,8 +7,15 @@ import SearchButton from '../../../../components/search-button';
 import './styles/styles.scss';
 
 export default class SearchForm extends React.Component {
-    searchFieldChange = (value) => {
-        console.log('searchFieldChange', value); // eslint-disable-line
+    triggerSearch() {
+        console.log('search'); // eslint-disable-line
+    }
+
+    searchFieldChange = (value, key) => {
+        console.log('searchFieldChange', value, key); // eslint-disable-line
+        if(key === 'Enter') {
+            this.triggerSearch();
+        }
     }
 
     searchFilterChange = (filter) => {
