@@ -3,14 +3,13 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 import SearchField from './index';
-import { wrap } from 'module';
 
 describe('SearchField', () => {
     let props = null;
 
     beforeEach(() => {
         props = {
-            onKeyUp: jest.fn(),
+            onChange: jest.fn(),
             placeholder: 'search for movie',
             label: 'search'
         }
@@ -46,17 +45,17 @@ describe('SearchField', () => {
         it('should call calbackack function on typing', () => {
             const text = 'movie';
             text.split('').forEach((char, index) => {
-                wrapper.find('input').at(0).simulate('keyup', {
+                wrapper.find('input').at(0).simulate('change', {
                     key: char,
                     target: {
                         value: text.slice(0, index+1)
                     }
                 });
-                expect(props.onKeyUp.mock.calls[index][0].key).toEqual(char);
+                expect(props.onChange.mock.calls[index][0].key).toEqual(char);
             });
 
-            expect(props.onKeyUp.mock.calls).toHaveLength(text.length);
-            expect(props.onKeyUp.mock.calls[text.length-1][0].target.value).toEqual(text);
+            expect(props.onChange.mock.calls).toHaveLength(text.length);
+            expect(props.onChange.mock.calls[text.length-1][0].target.value).toEqual(text);
         });
     });
 });

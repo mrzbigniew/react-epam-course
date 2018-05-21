@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles/styles.scss';
 
-const SearchField = ({onKeyUp, placeholder, label}) => {
+const SearchField = ({onChange, placeholder, label}) => {
     return (
         <div className="search-field">
             <div className="form-group">
@@ -14,7 +14,7 @@ const SearchField = ({onKeyUp, placeholder, label}) => {
                 <div>
                     <input id="searchInput"
                            className="form-control"
-                           onKeyUp={(event) => onKeyUp(event)}
+                           onChange={onChange} // eslint-disable-line
                            placeholder={placeholder}/>
                 </div>
             </div>
@@ -23,7 +23,7 @@ const SearchField = ({onKeyUp, placeholder, label}) => {
 }
 
 SearchField.propTypes = {
-    onKeyUp: PropTypes.func,
+    onChange: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string
 }

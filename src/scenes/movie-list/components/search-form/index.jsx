@@ -31,7 +31,7 @@ export default class SearchForm extends React.Component {
             <div className="search-form" >
                 <div className="row no-gutters">
                     <div className="col-12">
-                        <SearchField onKeyUp={this.searchFieldChange} placeholder={`Search`} label={`Search for movie`} />
+                        <SearchField onChange={this.searchFieldChange} placeholder={`Search`} label={`Search for movie`} />
                     </div>
                 </div>
                 <div className="row no-gutters">
