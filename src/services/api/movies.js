@@ -1,6 +1,9 @@
-const endpoint = 'http://react-cdp-api.herokuapp.com/ ';
+const endpoint = 'http://react-cdp-api.herokuapp.com/';
 
-const queryTag = (strings, ...values) => values[1] ? values.join('?') : values[0];
+const queryTag = (strings, ...values) => {
+    const value = values[2] ? `${values[0]}${values[1]}?${values[2]}` : `${values[0]}${values[1]}`;
+    return value;
+};
 
 const generateQueryString = params => (
     params ? Object.keys(params)
@@ -9,16 +12,13 @@ const generateQueryString = params => (
     .join('&') : ''
 );
 
-export const fetchMovies = params => fetch(
-    queryTag `${endpoint}${generateQueryString(params)}`, {
+export const fetchData = ({path, params}) => fetch(
+    queryTag`${endpoint}${path}${generateQueryString(params)}`, {
         method: 'GET',
         mode: 'cros'
     }
-)
+);
 
-export const fetchMovie = id => fetch(
-    `${endpoint}${id}`, {
-        method: 'GET',
-        mode: 'cros'
-    }
-)
+export const fetchMovies = params => fetchData({path: 'movies', params});
+
+export const fetchMovie = id => fetchData({path: `movies/${id}`});

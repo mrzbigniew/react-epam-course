@@ -11,7 +11,6 @@ const App = () => {
         <ErrorBoundary>
             <MovieList />
         </ErrorBoundary>
-
     );
 };
 

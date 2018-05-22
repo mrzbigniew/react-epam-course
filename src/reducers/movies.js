@@ -2,12 +2,13 @@ import { combineReducers } from 'redux';
 import filter from './filter';
 import sortby from './sortby';
 
-export const MOVIES_DATA_LOADING_START = 'MOVIES_DATA_LOADING_START';
-export const MOVIES_DATA_LOADING_SUCCESS = 'MOVIES_DATA_LOADING_SUCCESS';
-export const MOVIES_DATA_LOADING_ERROR = 'MOVIES_DATA_LOADING_ERROR';
-
-export const MOVIES_DATA_CLEAN = 'MOVIES_DATA_CLEAN';
-export const MOVIES_DATA_SET = 'MOVIES_DATA_SET';
+import {
+  MOVIES_DATA_CLEAN,
+  MOVIES_DATA_LOADING_START,
+  MOVIES_DATA_LOADING_SUCCESS,
+  MOVIES_DATA_LOADING_ERROR,
+  MOVIES_DATA_SET
+} from '../actions/movies';
 
 export const loadStatus = (state = {
     isLoading: false,
@@ -47,15 +48,15 @@ export const data = (state = [], action) => {
     }
 }
 
-export const query = combineReducers(
+export const query = combineReducers({
     filter,
     sortby
-)
+});
 
-const movies = combineReducers(
+const movies = combineReducers({
     data,
     loadStatus,
     query
-);
+});
 
 export default movies;
