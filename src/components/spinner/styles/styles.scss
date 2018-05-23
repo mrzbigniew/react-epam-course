@@ -1,0 +1,32 @@
+.spinner {
+    width: 5rem;
+    height: 5rem;
+    position: relative;
+    .blinker1,
+    .blinker2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-animation: blikn 2.0s infinite ease-in-out;
+        animation: blink 2.0s infinite ease-in-out;
+    }
+    .blinker2 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}

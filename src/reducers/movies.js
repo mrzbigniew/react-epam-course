@@ -1,16 +1,18 @@
-import { combineReducers } from 'redux';
+import {
+    combineReducers
+} from 'redux';
 import filter from './filter';
 import sortby from './sortby';
 
 import {
-  MOVIES_DATA_CLEAN,
-  MOVIES_DATA_LOADING_START,
-  MOVIES_DATA_LOADING_SUCCESS,
-  MOVIES_DATA_LOADING_ERROR,
-  MOVIES_DATA_SET
+    MOVIES_DATA_CLEAN,
+    MOVIES_DATA_LOADING_START,
+    MOVIES_DATA_LOADING_SUCCESS,
+    MOVIES_DATA_LOADING_ERROR,
+    MOVIES_DATA_SET
 } from '../actions/movies';
 
-export const loadStatus = (state = {
+const loadStatus = (state = {
     isLoading: false,
     error: null
 }, action) => {
@@ -35,20 +37,27 @@ export const loadStatus = (state = {
     }
 }
 
-export const data = (state = [], action) => {
+const data = (state = {
+    data: [],
+    total: 0,
+}, action) => {
     switch (action.type) {
         case MOVIES_DATA_SET:
-            return [
-                ...action.data
-            ];
+            return {
+                data: action.data,
+                total: action.total
+            };
         case MOVIES_DATA_CLEAN:
-            return [];
+            return {
+                data: [],
+                total: 0
+            };
         default:
             return state;
     }
 }
 
-export const query = combineReducers({
+const query = combineReducers({
     filter,
     sortby
 });

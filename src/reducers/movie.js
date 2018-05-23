@@ -9,7 +9,7 @@ export const MOVIE_DATA_GET = "MOVIE_DATA_GET";
 export const MOVIE_DATA_SET = "MOVIE_DATA_SET";
 export const MOVIE_DATA_CLEAR = "MOVIE_DATA_CLEAR";
 
-export const loadStatus = (state = {
+const loadStatus = (state = {
     isLoading: false,
     error: null
 }, action) => {
@@ -36,7 +36,7 @@ export const loadStatus = (state = {
     }
 }
 
-export const data = (state = null, action) => {
+const data = (state = null, action) => {
     switch (action.type) {
         case MOVIE_DATA_SET:
             return {
@@ -49,7 +49,7 @@ export const data = (state = null, action) => {
     }
 }
 
-export const query = (state = null, action) => {
+const query = (state = null, action) => {
     switch (action.type) {
         case MOVIE_DATA_GET:
             return action.id;

@@ -1,4 +1,5 @@
 import { fetchMovies } from "../services/api/movies";
+import { showSpinner, hideSpinner } from "./spinner";
 
 export const MOVIES_DATA_LOADING_START = 'MOVIES_DATA_LOADING_START';
 export const MOVIES_DATA_LOADING_SUCCESS = 'MOVIES_DATA_LOADING_SUCCESS';
@@ -22,7 +23,8 @@ export const moviesLoadingError = (error) => ({
 
 export const moviesDataSet = (data) => ({
   type: MOVIES_DATA_SET,
-  data: data
+  data: data.data,
+  total: data.total
 });
 
 export const moviesDataClean = () => ({
@@ -33,11 +35,14 @@ export const loadMovies = () => {
   return async dispatch => {
     try {
       dispatch(moviesLoadingStart());
+      dispatch(showSpinner());
       const data = await fetchMovies();
       dispatch(moviesLoadingSuccess());
-      dispatch(moviesDataSet(data));
+      dispatch(hideSpinner());
+      return dispatch(moviesDataSet(data));
     } catch(error) {
-      dispatch(error);
+      dispatch(moviesLoadingError(error));
+      dispatch(hideSpinner());
     }
   }
 }

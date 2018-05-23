@@ -23,7 +23,8 @@
         "no-undef": "off",
         "no-unused-expressions": 0,
         "chai-friendly/no-unused-expressions": 2,
-        "jest/valid-expect": 0
+        "jest/valid-expect": 0,
+        "no-unused-vars": "off"
     },
     "globals": {
         "module": true

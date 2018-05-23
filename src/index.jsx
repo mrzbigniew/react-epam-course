@@ -8,7 +8,8 @@ import Root from './root';
 
 const { store, persistor } = configureStore();
 
-store.dispatch(loadMovies());
+window.store = store;
+window.persistor = persistor;
 
 const render = () => {
     ReactDOM.render(
