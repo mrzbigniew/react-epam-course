@@ -1,50 +1,58 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import SearchField from '../../../../components/search-field';
-import SearchFilter from '../../../../components/search-filter';
 import SearchButton from '../../../../components/search-button';
+import FilterLink from '../../../../components/filter-link';
 
 import './styles/styles.scss';
+import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText, searchMovies } from '../../../../actions/search';
 
-export default class SearchForm extends React.Component {
-    triggerSearch() {
-        console.log('search'); // eslint-disable-line
+let SearchForm = ({dispatch, text, filter}) => {
+    const search = () => {
+        dispatch(searchMovies(filter, text));
     }
 
-    searchFieldChange = (event) => {
-        console.log('searchFieldChange', event); // eslint-disable-line
-        if(event.key === 'Enter') {
-            this.triggerSearch();
-        }
-    }
-
-    searchFilterChange = (filter) => {
-        console.log('searchFilterChange', filter); // eslint-disable-line
-    }
-
-    searchButtonClick = () => {
-        console.log('searchButtonClick'); // eslint-disable-line
-    }
-
-    render() {
-        return (
-            <div className="search-form" >
-                <div className="row no-gutters">
-                    <div className="col-12">
-                        <SearchField onChange={this.searchFieldChange} placeholder={`Search`} label={`Search for movie`} />
-                    </div>
+    return (
+        <form className="search-form" onSubmit={(e) => {e.preventDefault(); search()}}>
+            <div className="row no-gutters">
+                <div className="col-12">
+                    <SearchField onChange={(value) => dispatch(setSearchText(value))}/>
                 </div>
-                <div className="row no-gutters">
-                    <div className="col-6">
-                        <SearchFilter onClick={this.searchFilterChange} buttons={['title', 'genre']} selected={'title'} />
-                    </div>
-                    <div className="col-6">
-                        <div className="row no-gutters justify-content-end">
-                            <SearchButton onClick={this.searchButtonClick} label="search" />
-                        </div>
+            </div>
+            <div className="row no-gutters">
+                <div className="col-6">
+                    <FilterLink filter={SEARCH_BY_TITLE}>
+                        title
+                    </FilterLink>
+                    <FilterLink filter={SEARCH_BY_GENRE}>
+                        genre
+                    </FilterLink>
+                </div>
+                <div className="col-6">
+                    <div className="row no-gutters justify-content-end">
+                        <SearchButton onClick={() => search()}>
+                            search
+                        </SearchButton>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </form>
+    )
 }
+
+SearchForm.propTypes = {
+    dispatch: PropTypes.func,
+    text: PropTypes.string,
+    filter: PropTypes.string
+}
+
+SearchForm = connect(
+    (state) => ({
+        filter: state.search.filter,
+        text: state.search.text
+    })
+)(SearchForm);
+
+export default SearchForm;

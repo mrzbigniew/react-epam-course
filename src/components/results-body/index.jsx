@@ -5,7 +5,7 @@ import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
-const ResultsBody = ({movies, onMovieClick}) => {
+const ResultsBody = ({movies}) => {
     return (
         <div className="results-body">
             {movies && movies.length
@@ -15,7 +15,6 @@ const ResultsBody = ({movies, onMovieClick}) => {
                                  title={movie.title}
                                  genre={movie.genres[0]}
                                  release_year={movie.release_date.split('-')[0]}
-                                 onClick={() => onMovieClick(movie)}
                     />))
                 : <NoResults/>}
         </div>
@@ -23,8 +22,7 @@ const ResultsBody = ({movies, onMovieClick}) => {
 }
 
 ResultsBody.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel)).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel))
 }
 
 export default ResultsBody;

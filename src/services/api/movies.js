@@ -19,6 +19,6 @@ export const fetchData = async ({path, params}) => {
     return await data.json();
 };
 
-export const fetchMovies = async (params = {offset: 0, limit: 10000}) => fetchData({path: 'movies', params});
+export const fetchMovies = async (params = {offset: 0, limit: 10000}) => await fetchData({path: 'movies', params});
 
-export const fetchMovie = async (id) => fetchData ( {path: `movies/${id}`} );
+export const fetchMovie = async (id) => await fetchData ( {path: `movies/${id}`} );

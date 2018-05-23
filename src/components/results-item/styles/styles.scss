@@ -6,9 +6,16 @@
     flex-direction: column;
     margin: 10px;
     cursor: pointer;
+    .result--item-image {
+        width: 200px;
+        height: 300px;
+    }
     .movie-image {
         display: inline-block;
-        width: 100%;
         height: auto;
+        min-height: 300px;
+        min-width: 200px;
+        max-height: 300px;
+        max-width: 200px;
     }
 }

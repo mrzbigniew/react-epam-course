@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/styles.scss';
+
 const Link = ({ onClick, active, children }) => {
     return (
         active
             ? (
-                <span className="btn btn-sm btn-link">
+                <span className="btn btn-sm btn-success">
                     {children}
                 </span>
             )
             : (
-                <a className="btn btn-sm " href="#" onClick={(e) => { e.preventDefault(); onClick() }}>
+                <span className="btn btn-sm btn-text" onClick={(e) => { e.preventDefault(); onClick() }}>
                     {children}
-                </a>
+                </span>
             )
 
     )

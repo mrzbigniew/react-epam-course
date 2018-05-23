@@ -24,10 +24,6 @@ export default class App extends React.Component {
         }
     }
 
-    shouldComponentUpdate(p, p2) {
-        console.log(p, p2); // eslint-disable-line
-    }
-
     render() {
         return (
             <ErrorBoundary>
