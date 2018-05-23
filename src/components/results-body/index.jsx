@@ -5,6 +5,8 @@ import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
+import './styles/styles.scss';
+
 const ResultsBody = ({movies}) => {
     return (
         <div className="results-body">

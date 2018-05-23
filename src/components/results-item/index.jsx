@@ -11,7 +11,7 @@ const ResultsItem = ({ poster_path, title, release_year, genre, onClick }) => {
                 <MovieImage width="200"
                     src={poster_path}
                     alt={title}
-                    className="movie-image"
+                    className="image"
                 />
             </div>
             <div className="w-100 d-flex justify-content-between">

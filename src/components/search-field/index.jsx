@@ -15,7 +15,9 @@ const SearchField = ({ onChange }) => {
                     <input id="searchInput"
                         className="form-control"
                         onChange={(e) => onChange(e.target.value)}
-                        placeholder={`type to search`} />
+                        placeholder={`type to search`}
+                        autoComplete={`off`}
+                    />
                 </div>
             </div>
         </div>
