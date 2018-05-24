@@ -6,7 +6,7 @@ import Spinner from '../spinner';
 
 import './styles/styles.scss';
 
-const Cover = ({ visible=false }) => {
+const Cover = ({ visible }) => {
     return (
         <div className="cover" style={{ display: visible ? 'flex' : 'none' }}>
             <Spinner />
