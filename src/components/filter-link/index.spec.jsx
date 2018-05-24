@@ -34,6 +34,6 @@ describe('FilterLink', () => {
         expect(store.dispatch).toBeCalledWith({
             type: SET_SEARCH_FILTER,
             value: 'other'
-        })
+        });
     });
 });

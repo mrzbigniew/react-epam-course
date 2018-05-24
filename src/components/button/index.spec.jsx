@@ -7,7 +7,7 @@ import Button from './index';
 describe('Button', () => {
     it('renders gracefully', () => {
         const onClick = jest.fn();
-        const component = renderer.create(<Button onClick={onClick} label={`label`} className={`btn`} />);
+        const component = renderer.create(<Button onClick={onClick} className={`btn`}>label</Button>);
 
         expect(component.toJSON()).toMatchSnapshot();
     });
@@ -15,17 +15,18 @@ describe('Button', () => {
     describe('wraper', () => {
         let wrapper;
         let props;
+        let label = 'label';
 
         beforeEach(() => {
+
             props = {
-                label: 'button',
                 onClick: jest.fn(),
                 className: 'btn btn-primary'
             };
         });
 
         beforeEach(() => {
-            wrapper = shallow(<Button {...props} />);
+            wrapper = shallow(<Button {...props}>{label}</Button>);
         });
 
         it('is a button', () => {
@@ -37,7 +38,7 @@ describe('Button', () => {
         });
 
         it('have correct label', () => {
-            expect(wrapper.text()).toEqual(props.label);
+            expect(wrapper.text()).toEqual(label);
         });
 
         it('run onClick function when clicked', () => {

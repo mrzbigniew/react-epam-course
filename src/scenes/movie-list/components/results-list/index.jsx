@@ -12,7 +12,7 @@ import movie from '../../../../reducers/movie';
 import { SORT_BY_RATING, SORT_BY_RELEASE_DATE } from '../../../../actions/results';
 import { SEARCH_BY_TITLE } from '../../../../actions/search';
 
-const getFiltered = (data, filter, text) => {
+export const getFiltered = (data, filter, text) => {
     return filter && text
         ? (
             data.filter(
@@ -29,12 +29,11 @@ const getFiltered = (data, filter, text) => {
         : []
 }
 
-const getSorted = (data, sort) => {
+export const getSorted = (data, sort) => {
     return data.sort(
         (current, next) => {
-            const valueTransformer = sort === SORT_BY_RATING ? value => value.toString() : value => new Date(value)
-            const currentValue = valueTransformer(sort === SORT_BY_RATING ? current['vote_average'] : current['release_date']);
-            const nextValue = valueTransformer(sort === SORT_BY_RATING ? next['vote_average'] : next['release_date']);
+            const currentValue = (sort === SORT_BY_RATING ? current.vote_average : current.release_date).toString().toLowerCase();
+            const nextValue = (sort === SORT_BY_RATING ? next.vote_average : next.release_date).toString().toLowerCase();
             return currentValue === nextValue ? 0 : (currentValue > nextValue ? 1 : -1);
         }
     )

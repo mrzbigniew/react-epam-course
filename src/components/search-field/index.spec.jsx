@@ -34,12 +34,12 @@ describe('SearchField', () => {
 
         it('should have a label element with correct text', () => {
             expect(wrapper.find('label')).toHaveLength(1);
-            expect(wrapper.find('label').at(0).text()).toEqual(props.label);
+            expect(wrapper.find('label').at(0).text()).toEqual('Search for movie');
         });
 
         it('should have input element', () => {
             expect(wrapper.find('input')).toHaveLength(1);
-            expect(wrapper.find('input').at(0).props().placeholder).toEqual(props.placeholder);
+            expect(wrapper.find('input').at(0).props().placeholder).toEqual('type to search');
         });
 
         it('should call calbackack function on typing', () => {
@@ -51,11 +51,11 @@ describe('SearchField', () => {
                         value: text.slice(0, index+1)
                     }
                 });
-                expect(props.onChange.mock.calls[index][0].key).toEqual(char);
+                expect(props.onChange.mock.calls[index][0]).toEqual(text.slice(0, index+1));
             });
 
             expect(props.onChange.mock.calls).toHaveLength(text.length);
-            expect(props.onChange.mock.calls[text.length-1][0].target.value).toEqual(text);
+            expect(props.onChange.mock.calls[text.length-1][0]).toEqual(text);
         });
     });
 });
