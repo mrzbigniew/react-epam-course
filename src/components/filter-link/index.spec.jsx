@@ -1,8 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import FilterLink from './index';
+import { SET_SEARCH_FILTER } from '../../actions/search';
 
 describe('FilterLink', () => {
     let store;
@@ -24,10 +25,15 @@ describe('FilterLink', () => {
         expect(component1.toJSON()).toMatchSnapshot();
     });
 
-    it('wrapper', () => {
-        const wrapper = shallow(<FilterLink store={store} filter={'other'} />);
+    it('Clicking into link dispatch search action', () => {
+        const wrapper = mount(<FilterLink store={store} filter={'other'} />);
 
-        wrapper.find('.btn-success').at(0).simulate('click');
+        wrapper.find('Link').at(0).simulate('click');
+
         expect(store.dispatch).toBeCalled();
+        expect(store.dispatch).toBeCalledWith({
+            type: SET_SEARCH_FILTER,
+            value: 'other'
+        })
     });
 });

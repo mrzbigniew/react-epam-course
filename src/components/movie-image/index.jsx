@@ -19,8 +19,8 @@ class MovieImage extends React.Component {
                 {
                     !this.state.loaded
                         ? (
-                            <ImageCover visible={this.state.loaded}>
-                                <img src="http://www.mywebtimes.com/images/2017/loading.gif" />
+                            <ImageCover visible={!this.state.loaded}>
+                                <img className="loading" src="http://www.mywebtimes.com/images/2017/loading.gif" />
                             </ImageCover>
                         )
                         : ``
@@ -45,7 +45,7 @@ class MovieImage extends React.Component {
                         )
                         : (
                             <ImageCover visible={true}>
-                                <img style={{ maxWidth: '150px', maxHeight: '150px' }} src="https://www.artengo.co.uk/sites/artengo/files/styles/460x460/public/default_images/no-picture.png?itok=V-Gj1OhE" />
+                                <img className="no-image" style={{ maxWidth: '150px', maxHeight: '150px' }} src="https://www.artengo.co.uk/sites/artengo/files/styles/460x460/public/default_images/no-picture.png?itok=V-Gj1OhE" />
                             </ImageCover>
                         )
                 }
