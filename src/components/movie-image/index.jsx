@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImageCover from '../image-cover/image-cover';
+import ImageCover from '../image-cover';
 
 import './styles/styles.scss';
 

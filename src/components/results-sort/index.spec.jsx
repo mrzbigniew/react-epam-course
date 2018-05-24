@@ -1,20 +1,34 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import ResultsSort from './index';
+import { SET_SEARCH_RESULTS_SORT_ORDER } from '../../actions/results';
 
 jest.mock('../button', () => 'Button');
 
 describe('ResultsSort', () => {
     let props = null;
+    let store = null;
+    beforeEach(() => {
+        store = {
+            getState() {
+                return {
+                    results:  {
+                        sort: 'sort'
+                    }
+                }
+            },
+            dispatch: jest.fn(),
+            subscribe: jest.fn()
+        };
+    });
 
     beforeEach(() => {
         props = {
-            sortItems: ['sort1', 'sort2'],
-            onClick: jest.fn(),
-            sortBy: 'sort1'
-        };
+            value: 'sort',
+            store: store
+        }
     });
 
     it('should render', () => {
@@ -27,43 +41,56 @@ describe('ResultsSort', () => {
         let wrapper;
 
         beforeEach(() => {
-            wrapper = shallow(<ResultsSort {...props} />);
+            wrapper = null;
         });
 
-        it('should render element with results-sort class', () => {
-            expect(wrapper.hasClass('results-sort')).toBeTruthy();
+        it("render span if is active", () => {
+            wrapper = mount(<ResultsSort {...props} />);
+
+            expect(wrapper.find('span').at(0)).toHaveLength(1);
+            expect(wrapper.find('button').at(0)).toHaveLength(0);
         });
 
-        it('should renders sort items buttons', () => {
-            expect(wrapper.find('Button')).toHaveLength(props.sortItems.length);
-            expect(wrapper.find('Button').at(0).props().label).toEqual(props.sortItems[0].replace(/[^a-zA-Z0-9]+/g, ' '));
-            expect(wrapper.find('Button').at(1).props().label).toEqual(props.sortItems[1].replace(/[^a-zA-Z0-9]+/g, ' '));
+        it('render button if is not active', () => {
+            const store2 = {
+                ...store,
+                getState: () => ({
+                    results: {
+                        sort: 'other'
+                    }
+                })
+            };
+            const props2 = {
+                ...props,
+                store: store2
+            }
+
+            wrapper = mount(<ResultsSort {...props2} />);
+
+            expect(wrapper.find('Button')).toHaveLength(1);
         });
 
-        it('should set success class on selected item', () => {
-            props.sortBy = props.sortItems[0];
+        it('clicking on button fires dispatch', () => {
+            const store2 = {
+                ...store,
+                getState: () => ({
+                    results: {
+                        sort: 'other'
+                    }
+                })
+            };
+            const props2 = {
+                ...props,
+                store: store2
+            }
 
-            wrapper = shallow(<ResultsSort {...props}/>);
-            expect(wrapper.find('Button').at(0).hasClass('btn-success')).toBeTruthy();
-            expect(wrapper.find('Button').at(0).hasClass('btn-link')).toBeFalsy();
-            expect(wrapper.find('Button').at(1).hasClass('btn-success')).toBeFalsy();
-            expect(wrapper.find('Button').at(1).hasClass('btn-link')).toBeTruthy();
-
-            props.sortBy = props.sortItems[1];
-            wrapper = shallow(<ResultsSort {...props}/>);
-            expect(wrapper.find('Button').at(1).hasClass('btn-success')).toBeTruthy();
-            expect(wrapper.find('Button').at(1).hasClass('btn-link')).toBeFalsy();
-            expect(wrapper.find('Button').at(0).hasClass('btn-success')).toBeFalsy();
-            expect(wrapper.find('Button').at(0).hasClass('btn-link')).toBeTruthy();
-        });
-
-        it('should trigger onClick calback', () => {
-            wrapper.find('Button').at(0).simulate('click');
-            wrapper.find('Button').at(1).simulate('click');
-
-            expect(props.onClick.mock.calls).toHaveLength(2);
-            expect(props.onClick.mock.calls[0][0]).toEqual(props.sortItems[0]);
-            expect(props.onClick.mock.calls[1][0]).toEqual(props.sortItems[1]);
+            wrapper = mount(<ResultsSort {...props2} />);
+            wrapper.find('Button').simulate('click');
+            expect(props2.store.dispatch).toHaveBeenCalled();
+            expect(props2.store.dispatch).toHaveBeenLastCalledWith({
+                type: SET_SEARCH_RESULTS_SORT_ORDER,
+                value: props2.value
+            });
         });
     });
 });

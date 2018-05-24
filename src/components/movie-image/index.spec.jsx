@@ -33,16 +33,19 @@ describe('MovieImage', () => {
         });
 
         it('should hide cover if image is loaded', () => {
-            console.log(wrapper.find('.img').at(0).props());
-            wrapper.update()
-            expect(wrapper.find('ImageCover').at(0)).toBeDefined();
-            expect(wrapper.find('ImageCover').at(0).props().visible).toBeFalsy();
+            expect(wrapper.find('ImageCover').at(0)).toBeTruthy();
+            const props = wrapper.find('.movie-image .img').at(0).props();
+            props.onLoad();
+            wrapper.update();
+            expect(wrapper.find('ImageCover')).toHaveLength(0);
         });
 
         it('should render no-image cover if image fail to load', () => {
+            expect(wrapper.find('no-image')).toHaveLength(0);
+           const props = wrapper.find('.movie-image .img').at(0).props();
+            props.onError();
             wrapper.update();
-            expect(wrapper.find('ImageCover').at(0)).toBeDefined();
-            expect(wrapper.find('ImageCover').at(0).props().visible).toBeTruthy();
+            expect(wrapper.find('.no-image')).toHaveLength(1);
         });
     })
 })
