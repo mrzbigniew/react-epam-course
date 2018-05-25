@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { loadMovies } from './actions/movies';
-
-import ErrorBoundary from './components/error-boundary';
 import { connect } from 'react-redux';
 
+import ErrorBoundary from './components/error-boundary';
 import MovieList from './scenes/movie-list';
+import Cover from './components/cover';
 
 import 'bootstrap/scss/bootstrap.scss';
 import './styles/reset.scss';
-
-import Cover from './components/cover';
 
 @connect((state) => ({
     movies: state.movies.data
@@ -19,6 +17,7 @@ import Cover from './components/cover';
 }))
 export default class App extends React.Component {
     componentDidMount() {
+        console.log(this.props.movies);
         if (!this.props.movies.length) {
             this.props.loadMovies();
         }

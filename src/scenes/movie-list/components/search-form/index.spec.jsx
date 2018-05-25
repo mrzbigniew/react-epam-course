@@ -1,78 +1,94 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import SearchForm from './index';
+import { SET_SEARCH_RESULTS_CRITERIA } from '../../../../actions/results';
+import { wrap } from 'module';
+import { SET_SEARCH_TEXT } from '../../../../actions/search';
 
 jest.mock('../../../../components/search-field', () => 'SearchField');
-jest.mock('../../../../components/search-filter', () => 'SearchFilter');
 jest.mock('../../../../components/search-button', () => 'SearchButton');
+jest.mock('../../../../components/filter-link', () => 'FilterLink');
 
 describe('SearchForm', () => {
+
     it('should render', () => {
-        const component = renderer.create(<SearchForm />);
+        const store = {
+            getState() {
+                return {
+                    search: {
+                        filter: '',
+                        text: ''
+                    }
+                }
+            },
+            dispatch: jest.fn(),
+            subscribe() {
+                return () => { }
+            }
+        }
+
+        const component = renderer.create(<SearchForm store={store} />);
 
         expect(component.toJSON()).toMatchSnapshot();
     });
 
     describe('wrapper', () => {
         let wrapper = null;
-        let mockFoo = null;
-        let originalConsoleLog;
-
+        let store = null;
         beforeEach(() => {
-            originalConsoleLog = console.log;
-        });
-
-        beforeEach(() => {
-            mockFoo = jest.fn();
-            console.log = mockFoo;
-        });
-
-        beforeEach(() => {
-            wrapper = shallow(<SearchForm />);
-        });
-
-        afterEach(() => {
-            console.log = originalConsoleLog;
-        });
-
-        beforeEach(() => {
-            wrapper = shallow(<SearchForm />);
-        });
-
-        it('searchFieldChange: works', () => {
-            const expected = {
-                key: 'A',
-                target: {
-                    value: 'A'
+            store = {
+                subscribe() {
+                    return () => { }
+                },
+                dispatch: jest.fn(),
+                getState() {
+                    return {
+                        search: {
+                            filter: 'some_filter',
+                            text: 'some_text'
+                        }
+                    }
                 }
-            }
-            wrapper.instance().searchFieldChange(expected);
-            expect(mockFoo).toBeCalled();
-            expect(mockFoo).toBeCalledWith('searchFieldChange', expected);
-
-            mockFoo.mockClear();
-            const spy = jest.spyOn(wrapper.instance(), 'triggerSearch');
-
-            expected.key = 'Enter';
-            wrapper.instance().searchFieldChange(expected, 'Enter');
-            expect(spy).toBeCalled();
-            expect(mockFoo.mock.calls[1][0]).toEqual('search');
+            };
         });
 
-        it('searchFilterChange: works', () => {
-            let expected = 'title';
-            wrapper.instance().searchFilterChange(expected);
-            expect(mockFoo).toBeCalled();
-            expect(mockFoo).toBeCalledWith('searchFilterChange', expected);
+        it('dispatch search properties on submitting form', () => {
+
+            wrapper = mount(<SearchForm store={store} />);
+            wrapper.find('form').at(0).simulate('submit');
+
+            expect(store.dispatch).toBeCalled();
+            expect(store.dispatch).toBeCalledWith({
+                type: SET_SEARCH_RESULTS_CRITERIA,
+                filter: store.getState().search.filter,
+                text: store.getState().search.text
+            });
         });
 
-        it('searchButtonClick: works', () => {
-            wrapper.instance().searchButtonClick();
-            expect(mockFoo).toBeCalled();
-            expect(mockFoo).toBeCalledWith('searchButtonClick');
+        it('changeling search value dispatch new search text', () => {
+            wrapper = mount(<SearchForm store={store} />);
+            const searchValue = 'search value';
+            wrapper.find('SearchField').at(0).props().onChange(searchValue);
+
+            expect(store.dispatch).toBeCalled();
+            expect(store.dispatch).toBeCalledWith({
+                type: SET_SEARCH_TEXT,
+                value: searchValue
+            });
         });
 
+        it('triggers search after clicking search button', () => {
+            wrapper = mount(<SearchForm store={store} />);
+            wrapper.find('SearchButton').at(0).simulate('click');
+
+            expect(store.dispatch).toBeCalled();
+            expect(store.dispatch).toBeCalledWith({
+                type: SET_SEARCH_RESULTS_CRITERIA,
+                filter: store.getState().search.filter,
+                text: store.getState().search.text
+            });
+        });
     });
 });
