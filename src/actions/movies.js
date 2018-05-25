@@ -39,6 +39,7 @@ export const loadMovies = () => {
       const data = await fetchMovies();
       dispatch(moviesLoadingSuccess());
       dispatch(hideSpinner());
+      console.log(data);
       return dispatch(moviesDataSet(data));
     } catch(error) {
       dispatch(moviesLoadingError(error));

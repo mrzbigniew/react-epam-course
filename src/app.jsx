@@ -17,8 +17,7 @@ import './styles/reset.scss';
 }))
 export default class App extends React.Component {
     componentDidMount() {
-        console.log(this.props.movies);
-        if (!this.props.movies.length) {
+        if (!this.props.movies.data.length) {
             this.props.loadMovies();
         }
     }

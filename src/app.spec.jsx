@@ -14,8 +14,6 @@ const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
 const initialState = {};
 
-global.fetch = require('jest-fetch-mock');
-
 describe('App', () => {
     it('renders', () => {
         fetch.mockResponseOnce(JSON.stringify({
