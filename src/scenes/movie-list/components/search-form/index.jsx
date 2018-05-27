@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import SearchField from '../../../../components/search-field';
 import SearchButton from '../../../../components/search-button';
 import FilterLink from '../../../../components/filter-link';
 
 import './styles/styles.scss';
-import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText, searchMovies } from '../../../../actions/search';
+import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText } from '../../../../actions/search';
 
-let SearchForm = ({dispatch, text, filter}) => {
+let SearchForm = withRouter(({dispatch, text, filter, history}) => {
     const search = () => {
-        dispatch(searchMovies(filter, text));
+        history.push(`/search/filter=${filter}%20text=${text}`);
     }
 
     return (
@@ -40,12 +41,13 @@ let SearchForm = ({dispatch, text, filter}) => {
             </div>
         </form>
     )
-}
+})
 
 SearchForm.propTypes = {
     dispatch: PropTypes.func,
     text: PropTypes.string,
-    filter: PropTypes.string
+    filter: PropTypes.string,
+    history: PropTypes.object
 }
 
 SearchForm = connect(

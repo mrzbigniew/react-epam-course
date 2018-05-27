@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
 import './styles/styles.scss';
 
-const ResultsBody = ({movies}) => {
+const ResultsBody = ({ movies }) => {
     return (
         <div className="results-body">
             {movies && movies.length
                 ? movies.map(movie => (
-                    <ResultsItem key={movie.id}
-                                 poster_path={movie.poster_path}
-                                 title={movie.title}
-                                 genre={movie.genres[0]}
-                                 release_year={movie.release_date.split('-')[0]}
-                    />))
-                : <NoResults/>}
+                    <Link key={movie.id} to={`/film/${movie.id}`}>
+                        <ResultsItem
+                            poster_path={movie.poster_path}
+                            title={movie.title}
+                            genre={movie.genres[0]}
+                            release_year={movie.release_date.split('-')[0]}
+                        />
+                    </Link>
+                    )
+                )
+                : <NoResults />}
         </div>
     );
 }
