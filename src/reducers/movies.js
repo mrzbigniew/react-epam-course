@@ -1,8 +1,6 @@
 import {
     combineReducers
 } from 'redux';
-import filter from './filter';
-import sortby from './sortby';
 
 import {
     MOVIES_DATA_CLEAN,
@@ -57,15 +55,9 @@ const data = (state = {
     }
 }
 
-const query = combineReducers({
-    filter,
-    sortby
-});
-
 const movies = combineReducers({
     data,
     loadStatus,
-    query
 });
 
 export default movies;

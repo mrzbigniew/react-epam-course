@@ -49,7 +49,7 @@ const data = (state = null, action) => {
     }
 }
 
-const query = (state = null, action) => {
+const id = (state = null, action) => {
     switch (action.type) {
         case MOVIE_DATA_GET:
             return action.id;
@@ -61,7 +61,7 @@ const query = (state = null, action) => {
 const movie = combineReducers({
     loadStatus,
     data,
-    query
+    id
 });
 
 export default movie;
