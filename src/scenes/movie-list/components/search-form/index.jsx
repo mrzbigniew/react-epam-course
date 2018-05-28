@@ -9,17 +9,17 @@ import FilterLink from '../../../../components/filter-link';
 
 import './styles/styles.scss';
 import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText } from '../../../../actions/search';
+import { setSearchResults } from '../../../../actions/results';
 
-let SearchForm = withRouter(({dispatch, text, filter, history}) => {
+let SearchForm = ({ history, setText, filter, text }) => {
     const search = () => {
-        history.push(`/search/filter=${filter}%20text=${text}`);
+        history.push(`/search/${filter} ${text}`);
     }
-
     return (
-        <form className="search-form" onSubmit={(e) => {e.preventDefault(); search()}}>
+        <form className="search-form" onSubmit={(e) => { e.preventDefault(); }}>
             <div className="row no-gutters">
                 <div className="col-12">
-                    <SearchField onChange={(value) => dispatch(setSearchText(value))}/>
+                    <SearchField onChange={setText} />
                 </div>
             </div>
             <div className="row no-gutters">
@@ -41,20 +41,27 @@ let SearchForm = withRouter(({dispatch, text, filter, history}) => {
             </div>
         </form>
     )
-})
+};
 
 SearchForm.propTypes = {
-    dispatch: PropTypes.func,
-    text: PropTypes.string,
+    movies: PropTypes.array,
+    history: PropTypes.object,
+    doSearch: PropTypes.func,
+    setText: PropTypes.func,
     filter: PropTypes.string,
-    history: PropTypes.object
+    text: PropTypes.string
 }
 
-SearchForm = connect(
+SearchForm = withRouter(connect(
     (state) => ({
         filter: state.search.filter,
         text: state.search.text
+    }),
+    (dispatch, ownProps) => ({
+        setText: (text) => {
+            dispatch(setSearchText(text));
+        }
     })
-)(SearchForm);
+)(SearchForm));
 
 export default SearchForm;

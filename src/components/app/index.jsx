@@ -30,7 +30,7 @@ export default class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/" component={MovieList} />
-                    <Route path="/search/(:searchQuery)" component={MovieList} />
+                    <Route path="/search/:filter :text" component={MovieList} />
                     <Route path="/film/:id" component={Movie} />
                     <Route path="*" component={NotFound} />
                 </Switch>

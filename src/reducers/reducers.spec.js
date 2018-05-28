@@ -221,7 +221,6 @@ describe('results', () => {
             title: 'title'
         }];
         expected.data = data;
-        console.log(expected);
 
         expect(results(initialState, {
             type: SET_SEARCH_RESULTS_DATA,

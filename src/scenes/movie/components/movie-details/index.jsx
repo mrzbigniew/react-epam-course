@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import MovieTitle from '../../../../components/movie-title';
 import MovieCover from '../../../../components/movie-cover';
@@ -8,10 +11,8 @@ import MovieYear from '../../../../components/movie-year';
 import MovieDuration from '../../../../components/movie-duration';
 import MovieDescription from '../../../../components/movie-description';
 
-import moviesList from '../../../../__mocks__/movies';
-
-const MovieDetails = () => {
-    const movie = moviesList[0];
+let MovieDetails = ({movies, match}) => {
+    const movie = movies.find((movie) => movie.id.toString() === match.params.id);
     return (
         <div className="movie-details">
             <div className="d-flex align-items-stretch justify-content-start m-2">
@@ -43,6 +44,17 @@ const MovieDetails = () => {
             </div>
         </div>
     );
-}
+};
+
+MovieDetails.propTypes = {
+    movies: PropTypes.array,
+    match: PropTypes.object
+};
+
+MovieDetails = withRouter(connect(
+    (state) => ({
+        movies: state.movies.data.data
+    })
+)(MovieDetails));
 
 export default MovieDetails;

@@ -9,9 +9,9 @@ const { store, persistor } = configureStore();
 window.store = store;
 window.persistor = persistor;
 
-store.subscribe(() => {
-    console.log(store.getState()) // eslint-disable-line
-});
+// store.subscribe(() => {
+//     console.log(store.getState()) // eslint-disable-line
+// });
 
 const render = () => {
     ReactDOM.render(

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,68 +10,39 @@ import Content from '../../../../components/content';
 import Navbar from '../../../../components/navbar';
 import movie from '../../../../reducers/movie';
 
-import { SORT_BY_RATING, SORT_BY_RELEASE_DATE } from '../../../../actions/results';
-import { SEARCH_BY_TITLE } from '../../../../actions/search';
+import { SORT_BY_RATING, SORT_BY_RELEASE_DATE, getFiltered, sortResults } from '../../../../actions/results';
 
-export const getFiltered = (data, filter, text) => {
-    return filter && text
-        ? (
-            data.filter(
-                movie => (
-                    (filter === SEARCH_BY_TITLE)
-                        ? (movie.title.toLowerCase().trim().indexOf(text.toLowerCase().trim()) !== -1)
-                        : (movie.genres.some(
-                            genre => genre.toLowerCase().trim().indexOf(text.toLowerCase().trim()) !== -1
-                        )
-                        )
-                )
-            )
-        )
-        : []
-}
-
-export const getSorted = (data, sort) => {
-    return data.sort(
-        (current, next) => {
-            const currentValue = (sort === SORT_BY_RATING ? current.vote_average : current.release_date).toString().toLowerCase();
-            const nextValue = (sort === SORT_BY_RATING ? next.vote_average : next.release_date).toString().toLowerCase();
-            return currentValue === nextValue ? 0 : (currentValue > nextValue ? 1 : -1);
-        }
-    )
-}
-
-let ResultsList = ({ movies }) => {
+let ResultsList = ({ movies, sort, match }) => {
+    const text = match.params.text;
+    const filter = match.params.filter;
+    const results = sortResults(getFiltered(movies, filter, text), sort);
     return (
         <Content>
             <Navbar className="navbar-expand-lg navbar-light bg-light justify-content-between">
-                <ResultsCount moviesCount={movies.length} />
+                <ResultsCount moviesCount={results.length} />
                 <div>
                     <ResultsSort value={SORT_BY_RATING}>rating</ResultsSort>
                     <ResultsSort value={SORT_BY_RELEASE_DATE}>release date</ResultsSort>
                 </div>
             </Navbar>
             <Content>
-                <ResultsBody movies={movies} />
+                <ResultsBody movies={results} />
             </Content>
         </Content>
     );
 };
 
 ResultsList.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.object)
+    movies: PropTypes.arrayOf(PropTypes.object),
+    match: PropTypes.object,
+    sort: PropTypes.string
 }
 
-ResultsList = connect(
+ResultsList = withRouter(connect(
     (state) => ({
-        movies: getSorted(
-            getFiltered(
-                state.movies.data.data,
-                state.results.criteria.filter,
-                state.results.criteria.text
-            ),
-            state.results.sort
-        )
+        movies: state.movies.data.data,
+        sort: state.results.sort
     })
-)(ResultsList);
+)(ResultsList));
 
 export default ResultsList;
