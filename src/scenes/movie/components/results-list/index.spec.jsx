@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
+import MockRouter from 'react-mock-router';
+import { Route } from 'react-router-dom';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
 import ResultsList from './index';
 
@@ -9,31 +13,52 @@ jest.mock('../../../../components/content', () => 'Content');
 jest.mock('../../../../components/navbar', () => 'Navbar');
 jest.mock('../../../../components/results-genre-info', () => 'ResultsGenreInfo');
 
+const middlewares = [thunk]
+const mockStore = configureStore(middlewares)
+const initialState = {};
+
 describe('ResultsList', () => {
     it('should render', async () => {
-        const component = renderer.create(<ResultsList />);
-        expect(component.toJSON()).toMatchSnapshot();
-    });
-
-    describe('wrapper', () => {
-        let wrapper = null;
-
-        beforeEach(() => {
-            wrapper = shallow(<ResultsList />);
-        });
-
-        it('should call callback method on movie click', () => {
-            const originalConsoleLog = console.log;
-            const mockFoo = jest.fn();
-            const movie = {
-                name: 'A'
+        const store = mockStore({
+            movies: {
+                data: {
+                    data: [
+                        {
+                            id: 1,
+                            title: 'movie 1',
+                            genres: [
+                                'drama'
+                            ],
+                            poster_path: '/poster.jpg'
+                        }, {
+                            id: 2,
+                            title: 'movie 2',
+                            genres: [
+                                'drama'
+                            ],
+                            poster_path: '/poster.jpg'
+                        }, {
+                            id: 3,
+                            title: 'movie 3',
+                            genres: [
+                                'drama'
+                            ],
+                            poster_path: '/poster.jpg'
+                        }
+                    ]
+                }
             }
-            console.log = mockFoo;
-            wrapper.find('ResultsBody').at(0).prop('onMovieClick')(movie);
-            console.log = originalConsoleLog;
-            expect(mockFoo).toHaveBeenCalled();
-            expect(mockFoo.mock.calls[0][0]).toEqual('movieClick');
-            expect(mockFoo.mock.calls[0][1]).toEqual(movie);
         });
+
+        const component = renderer.create(
+            <MockRouter params={{
+                id: '1'
+            }}>
+                <Route render={(props) => (
+                    <ResultsList store={store} {...props} />
+                )}/>
+            </MockRouter>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
     });
 });
