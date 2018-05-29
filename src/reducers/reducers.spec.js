@@ -202,46 +202,12 @@ describe('results', () => {
 
     beforeEach(() => {
         initialState = {
-            data: [],
-            criteria: {
-                filter: '',
-                text: ''
-            },
             sort: SORT_BY_RELEASE_DATE
         }
     });
 
     it('should return valid initial state', () => {
         expect(results(undefined, {})).toEqual(initialState);
-    });
-
-    it('#action:SET_SEARCH_RESULTS_DATA', () => {
-        const expected = Object.assign({}, initialState);
-        const data = [{
-            title: 'title'
-        }];
-        expected.data = data;
-
-        expect(results(initialState, {
-            type: SET_SEARCH_RESULTS_DATA,
-            data: data
-        })).toEqual(expected);
-    });
-
-    it('#action:SET_SEARCH_RESULTS_CRITERIA', () => {
-        const expected = Object.assign({}, initialState);
-        const text = 'title';
-        const filter = 'filter';
-        expected.criteria = {
-            filter,
-            text
-        }
-
-        expect(results(initialState, {
-            type: SET_SEARCH_RESULTS_CRITERIA,
-            filter,
-            text
-        })).toEqual(expected);
     });
 
     it('#action:SET_SEARCH_RESULTS_SORT_ORDER', () => {

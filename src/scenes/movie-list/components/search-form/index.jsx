@@ -16,7 +16,7 @@ let SearchForm = ({ history, setText, filter, text }) => {
         history.push(`/search/${filter} ${text}`);
     }
     return (
-        <form className="search-form" onSubmit={(e) => { e.preventDefault(); }}>
+        <form className="search-form" onSubmit={(e) => { e.preventDefault(); search(); }}>
             <div className="row no-gutters">
                 <div className="col-12">
                     <SearchField onChange={setText} />
@@ -57,7 +57,7 @@ SearchForm = withRouter(connect(
         filter: state.search.filter,
         text: state.search.text
     }),
-    (dispatch, ownProps) => ({
+    (dispatch) => ({
         setText: (text) => {
             dispatch(setSearchText(text));
         }

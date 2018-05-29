@@ -38,11 +38,3 @@ export const setSearchResultsSortOrder = (value) => ({
     type: SET_SEARCH_RESULTS_SORT_ORDER,
     value: value
 });
-
-export const setSearchResults = (data, filter, text) => ({
-    type: SET_SEARCH_RESULTS_DATA,
-    data,
-    filter,
-    text
-});
-

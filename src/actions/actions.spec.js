@@ -17,8 +17,8 @@ import {
 import {
     SET_SPINNER_STATE, showSpinner, hideSpinner
 } from './spinner';
-import { setSearchResultsSortOrder, SET_SEARCH_RESULTS_SORT_ORDER, SET_SEARCH_RESULTS_DATA, setSearchResults, SET_SEARCH_RESULTS_CRITERIA } from './results';
-import { setSearchText, SET_SEARCH_TEXT, SET_SEARCH_FILTER, setSearchFilter, searchMovies } from './search';
+import { setSearchResultsSortOrder, SET_SEARCH_RESULTS_SORT_ORDER, SET_SEARCH_RESULTS_DATA, setSearchResults, SET_SEARCH_RESULTS_CRITERIA, sortResults, SORT_BY_RELEASE_DATE, SORT_BY_RATING, getFiltered } from './results';
+import { setSearchText, SET_SEARCH_TEXT, SET_SEARCH_FILTER, setSearchFilter, searchMovies, SEARCH_BY_TITLE, SEARCH_BY_GENRE } from './search';
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
@@ -179,22 +179,76 @@ describe('results', () => {
         store.dispatch(setSearchResultsSortOrder(1));
 
         expect(store.getActions()).toEqual(expectedAction);
+        
     });
 
-    it('#setSearchResults', () => {
-        const store = mockStore({});
-        const expectedAction = ([{
-            type: SET_SEARCH_RESULTS_DATA,
-            data: [{
-                title: 'movie 1'
-            }]
-        }]);
+    it('#sortResults', () => {
+        const data = [
+            {
+                title: '1',
+                vote_average: 10,
+                release_date: "2018-10-01"
+            }, {
+                title: '2',
+                vote_average: 8,
+                release_date: "2018-01-01"
+            }, {
+                title: '3',
+                vote_average: 2,
+                release_date: "2017-10-01"
+            }
+        ];
 
-        store.dispatch(setSearchResults([{
-            title: 'movie 1'
-        }]));
+        expect(sortResults(data, SORT_BY_RELEASE_DATE)).toEqual(data.sort(
+            (current, next) => current.release_date === next.release_date ? 0 : (
+                current.release_date > next.release_date ? 1 : -1
+            )
+        ));
 
-        expect(store.getActions()).toEqual(expectedAction);
+        expect(sortResults(data, SORT_BY_RATING)).toEqual(data.sort(
+            (current, next) => current.vote_average === next.vote_average ? 0 : (
+                current.vote_average > next.vote_average ? 1 : -1
+            )
+        ));
+    });
+
+    it('#getFiltered', () => {
+        const data = [
+            {
+                title: 'title 1',
+                vote_average: 10,
+                release_date: "2018-10-01",
+                genres: [
+                    'drama', 'fiction'
+                ]
+            }, {
+                title: 'title 11',
+                vote_average: 8,
+                release_date: "2018-01-01",
+                genres: [
+                    'fiction'
+                ]
+            }, {
+                title: 'title 2',
+                vote_average: 2,
+                release_date: "2017-10-01",
+                genres: [
+                    'drama'
+                ]
+            }
+        ];
+
+        expect(getFiltered(data, null, null)).toEqual([]);
+
+        expect(getFiltered(data, SEARCH_BY_TITLE, 'title 1')).toEqual(data.filter(
+            item => item.title.toLowerCase().trim().indexOf('title 1') !== -1
+        ));
+
+        expect(getFiltered(data, SEARCH_BY_GENRE, 'drama')).toEqual(data.filter(
+            item => item.genres.some(
+                genre => genre.toLowerCase().trim().indexOf('drama') !== -1
+            )
+        ));
     });
 });
 
