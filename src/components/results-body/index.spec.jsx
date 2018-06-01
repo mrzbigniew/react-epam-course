@@ -5,6 +5,8 @@ import { shallow,  } from 'enzyme';
 import ResultsBody from './index';
 import { wrap } from 'module';
 
+import { MemoryRouter } from 'react-router-dom'
+
 jest.mock('../results-item', () => 'ResultsItem');
 jest.mock('../no-results', () => 'NoResults');
 
@@ -38,7 +40,7 @@ describe('ResultsBody', () => {
     });
 
     it('should render', () => {
-        const component = renderer.create(<ResultsBody {...props} />);
+        const component = renderer.create(<MemoryRouter><ResultsBody {...props} /></MemoryRouter>);
 
         expect(component.toJSON()).toMatchSnapshot();
     });

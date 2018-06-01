@@ -2,16 +2,24 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 
+import MockRouter from 'react-mock-router';
+import { Route } from 'react-router-dom';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
 import ResultsList, { getSorted, getFiltered } from './index';
-import { RaceSubscriber } from 'rxjs/observable/race';
-import { SEARCH_BY_TITLE, SEARCH_BY_GENRE } from '../../../../actions/search';
-import { SORT_BY_RELEASE_DATE, SORT_BY_RATING } from '../../../../actions/results';
+import { SORT_BY_RATING } from '../../../../actions/results';
 
 jest.mock('../../../../components/results-count', () => 'ResultsCount');
-jest.mock('../../../../components/results-sort', () => 'ResultsSort');
-jest.mock('../../../../components/results-body', () => 'ResultsBody');
-jest.mock('../../../../components/content', () => 'Content');
-jest.mock('../../../../components/navbar', () => 'Navbar');
+jest.mock('../../../../components/results-sort', () => 'ResultsCount');
+jest.mock('../../../../components/results-body', () => 'ResultsCount');
+jest.mock('../../../../components/content', () => 'ResultsCount');
+jest.mock('../../../../components/navbar', () => 'ResultsCount');
+jest.mock('../../../../reducers/movie', () => 'ResultsCount');
+
+const middlewares = [thunk]
+const mockStore = configureStore(middlewares)
+const initialState = {};
 
 const movies = {
     data: {
@@ -112,111 +120,31 @@ const movies = {
     }
 }
 
-const results = {
-    criteria: {
-        filter: SEARCH_BY_TITLE,
-        text: ''
-    },
-    sort: SORT_BY_RELEASE_DATE
-}
-
 describe('ResultsList', () => {
     let store = null;
-
+    let params = {};
     beforeEach(() => {
-        store = {
-            getState() {
-                return {
-                    movies,
-                    results
-                }
-            },
-            dispatch: () => { },
-            subscribe: () => { }
+        store = mockStore({
+            movies,
+            results: {
+                sort: SORT_BY_RATING
+            }
+        });
+        params = {
+            text: 'A',
+            filter: 'title'
         }
     });
 
     it('should render', () => {
-        const component = renderer.create(<ResultsList store={store} />);
+        const component = renderer.create(
+            <MockRouter params={params}>
+                <Route render={(props) => (
+                    <ResultsList store={store} {...props} />
+                )} />
+            </MockRouter>
+        );
 
         expect(component.toJSON()).toMatchSnapshot();
-    });
-
-    describe('wrapper', () => {
-        let wrapper = null;
-        it('should generate array on pasing props', () => {
-            wrapper = mount(<ResultsList store={store} sort={SORT_BY_RELEASE_DATE} />);
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toHaveLength(0);
-        });
-
-        it('should set movies filtered by title', () => {
-            const store2 = {
-                ...store,
-                getState: () => ({
-                    movies,
-                    results: {
-                        criteria: {
-                            filter: SEARCH_BY_TITLE,
-                            text: 'B'
-                        },
-                        sort: SORT_BY_RATING
-                    }
-                })
-            };
-
-            wrapper = mount(<ResultsList store={store2} />);
-            const expected = getSorted(
-                getFiltered(movies.data.data, SEARCH_BY_TITLE, 'B'),  SORT_BY_RATING
-            );
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toHaveLength(expected.length);
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toEqual(expected);
-        });
-
-        it('should set movies filtered by genree', () => {
-            const store2 = {
-                ...store,
-                getState: () => ({
-                    movies,
-                    results: {
-                        criteria: {
-                            filter: SEARCH_BY_GENRE,
-                            text: 'A'
-                        },
-                        sort: SORT_BY_RELEASE_DATE
-                    }
-                })
-            };
-
-            wrapper = mount(<ResultsList store={store2}  />);
-            const expected = getSorted(
-                getFiltered(movies.data.data, SEARCH_BY_GENRE, 'A'), SORT_BY_RELEASE_DATE
-            );
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toHaveLength(expected.length);
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toEqual(expected);
-        });
-
-        it('sort', () => {
-            const store2 = {
-                ...store,
-                getState: () => ({
-                    movies,
-                    results: {
-                        criteria: {
-                            filter: SEARCH_BY_GENRE,
-                            text: 'C'
-                        },
-                        sort: SORT_BY_RATING
-                    },
-
-                })
-            };
-
-            wrapper = mount(<ResultsList store={store2} />);
-            const expected = getSorted(
-                getFiltered(movies.data.data, SEARCH_BY_GENRE, 'C'), SORT_BY_RATING
-            );
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toHaveLength(expected.length);
-            expect(wrapper.find('ResultsBody').at(0).props().movies).toEqual(expected);
-        });
     });
 });

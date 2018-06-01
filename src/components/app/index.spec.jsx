@@ -4,11 +4,13 @@ import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import App from './app';
+import App from './index';
 
-jest.mock('./components/error-boundary', () => 'ErrorBoundary');
-jest.mock('./scenes/movie-list', () => 'MovieList');
-jest.mock('./components/cover', () => 'Cover');
+jest.mock('../../scenes/movie-list', () => 'MovieList');
+jest.mock('../../scenes/movie', () => 'Movie');
+jest.mock('../error-boundary', () => 'ErrorBoundary');
+jest.mock('../cover', () => 'Cover');
+jest.mock('../not-found', () => 'NotFound');
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)

@@ -4,9 +4,9 @@ import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import Root from './root';
+import Root from './index';
 
-jest.mock('./app', () => 'App');
+jest.mock('../app', () => 'App');
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)

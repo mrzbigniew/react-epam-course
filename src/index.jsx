@@ -2,18 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './configureStore';
 
-import { loadMovies } from './actions/movies';
-
-import Root from './root';
+import Root from './components/root';
 
 const { store, persistor } = configureStore();
 
 window.store = store;
 window.persistor = persistor;
 
-store.subscribe(() => {
-    console.log(store.getState()) // eslint-disable-line
-});
+// store.subscribe(() => {
+//     console.log(store.getState()) // eslint-disable-line
+// });
 
 const render = () => {
     ReactDOM.render(

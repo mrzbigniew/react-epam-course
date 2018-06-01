@@ -1,21 +1,18 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Button from '../../../../components/button';
 
 import './styles/styles.scss';
 
-const BackToSearch = () => {
-
-    const backToSearchClick = () => {
-        console.log('backToSearchClick'); // eslint-disable-line
-    }
-
+const BackToSearch = withRouter(({ history }) => {
     return (
-        <Button className="back-to-search btn btn-sm btn-light"
-                onClick={backToSearchClick}
-                label="search"
-        />
+        <Button className="btn btn-text btn-sm back-to-search"
+                onClick={history.goBack}
+        >
+            search
+        </Button>
     );
-}
+});
 
 export default BackToSearch;

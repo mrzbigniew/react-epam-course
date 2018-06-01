@@ -1,24 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import SearchField from '../../../../components/search-field';
 import SearchButton from '../../../../components/search-button';
 import FilterLink from '../../../../components/filter-link';
 
 import './styles/styles.scss';
-import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText, searchMovies } from '../../../../actions/search';
+import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText } from '../../../../actions/search';
+import { setSearchResults } from '../../../../actions/results';
 
-let SearchForm = ({dispatch, text, filter}) => {
+let SearchForm = ({ history, setText, filter, text }) => {
     const search = () => {
-        dispatch(searchMovies(filter, text));
+        history.push(`/search/${filter} ${text}`);
     }
-
     return (
-        <form className="search-form" onSubmit={(e) => {e.preventDefault(); search()}}>
+        <form className="search-form" onSubmit={(e) => { e.preventDefault(); search(); }}>
             <div className="row no-gutters">
                 <div className="col-12">
-                    <SearchField onChange={(value) => dispatch(setSearchText(value))}/>
+                    <SearchField onChange={setText} />
                 </div>
             </div>
             <div className="row no-gutters">
@@ -40,19 +41,27 @@ let SearchForm = ({dispatch, text, filter}) => {
             </div>
         </form>
     )
-}
+};
 
 SearchForm.propTypes = {
-    dispatch: PropTypes.func,
-    text: PropTypes.string,
-    filter: PropTypes.string
+    movies: PropTypes.array,
+    history: PropTypes.object,
+    doSearch: PropTypes.func,
+    setText: PropTypes.func,
+    filter: PropTypes.string,
+    text: PropTypes.string
 }
 
-SearchForm = connect(
+SearchForm = withRouter(connect(
     (state) => ({
         filter: state.search.filter,
         text: state.search.text
+    }),
+    (dispatch) => ({
+        setText: (text) => {
+            dispatch(setSearchText(text));
+        }
     })
-)(SearchForm);
+)(SearchForm));
 
 export default SearchForm;
