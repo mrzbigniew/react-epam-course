@@ -1,0 +1,15 @@
+.search-filter {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    .btn {
+        padding-left: 10px;
+        text-transform: uppercase;
+    }
+    label {
+        color: white;
+    }
+    .btn-link {
+        color: #aaa;
+    }
+}

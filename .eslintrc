@@ -3,7 +3,9 @@
     "plugins": [
         "react",
         "jest",
-        "jsx-a11y"
+        "jsx-a11y",
+        "cypress",
+        "chai-friendly"
     ],
     "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:jest/recommended"],
     "rules": {
@@ -18,7 +20,10 @@
         "no-empty": ["error", {
             "allowEmptyCatch": true
         }],
-        "no-undef": "off"
+        "no-undef": "off",
+        "no-unused-expressions": 0,
+        "chai-friendly/no-unused-expressions": 2,
+        "jest/valid-expect": 0
     },
     "globals": {
         "module": true
@@ -27,7 +32,8 @@
         "node": true,
         "browser": true,
         "jasmine": true,
-        "jest": true
+        "jest": true,
+        "cypress/globals": true
     }
 }
 
