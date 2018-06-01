@@ -57,26 +57,6 @@ describe('ResultsBody', () => {
             expect(wrapper.find('ResultsItem')).toHaveLength(props.movies.length);
         });
 
-        it('should emit movie data when clicking on movie item', () => {
-            wrapper.find('ResultsItem').forEach(
-                item => item.simulate('click')
-            );
-
-            const emittedData = [];
-
-            props.onMovieClick.mock.calls.forEach(
-                data => {
-                    emittedData.push(data[0]);
-                }
-            );
-
-            expect(props.onMovieClick.mock.calls).toHaveLength(props.movies.length);
-            expect(emittedData).toHaveLength(props.movies.length);
-            emittedData.forEach(
-                (data, index) => expect(data).toEqual(props.movies[index])
-            );
-        });
-
         it('should render NoResults if no movies provided', () => {
             const props2 = {
                 movies: [],

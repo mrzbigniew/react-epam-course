@@ -4,14 +4,16 @@ import MovieImage from '../movie-image';
 
 import './styles/styles.scss';
 
-const ResultsItem = ({poster_path, title, release_year, genre, onClick}) => {
+const ResultsItem = ({ poster_path, title, release_year, genre, onClick }) => {
     return (
         <div className="result-item" onClick={onClick}>
-            <div><MovieImage
-                width="200"
-                src={poster_path}
-                alt={title}
-                className="movie-image"/></div>
+            <div className="result--item-image">
+                <MovieImage width="200"
+                    src={poster_path}
+                    alt={title}
+                    className="image"
+                />
+            </div>
             <div className="w-100 d-flex justify-content-between">
                 <span>{title}</span>
                 <span>{release_year}</span>

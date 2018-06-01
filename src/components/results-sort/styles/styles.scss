@@ -1,5 +1,8 @@
 .results-sort {
     .btn {
         text-transform: uppercase;
+        &.btn-link {
+            color: white;
+        }
     }
 }

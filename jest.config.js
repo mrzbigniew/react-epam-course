@@ -14,5 +14,8 @@ module.exports = {
         '!src/index.jsx',
         '!**/*.{css,scss}',
         '!**/node_modules/**'
+    ],
+    setupFiles: [
+        './setupJest.js'
     ]
 }

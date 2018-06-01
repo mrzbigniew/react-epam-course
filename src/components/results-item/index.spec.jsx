@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import ResultsItem from './index';
 
-jest.mock('../movie-image', () => 'img');
+jest.mock('../movie-image', () => 'MovieImage');
 
 describe('ResultsItem', () => {
     let props = null;
@@ -37,10 +37,10 @@ describe('ResultsItem', () => {
         });
 
         it('should have image element with proper attributes', () => {
-            expect(wrapper.find('img')).toHaveLength(1);
-            expect(wrapper.find('img').hasClass('movie-image')).toBeTruthy();
-            expect(wrapper.find('img').props().src).toEqual(props.poster_path);
-            expect(wrapper.find('img').props().alt).toEqual(props.title);
+            expect(wrapper.find('MovieImage')).toHaveLength(1);
+            expect(wrapper.find('MovieImage').hasClass('image')).toBeTruthy();
+            expect(wrapper.find('MovieImage').props().src).toEqual(props.poster_path);
+            expect(wrapper.find('MovieImage').props().alt).toEqual(props.title);
         });
 
         it('should have element with title', () => {

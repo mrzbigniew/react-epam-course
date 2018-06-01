@@ -7,11 +7,11 @@ module.exports = function(env, options) {
     const isProduction = options.mode === 'production';
 
     const commonPlugins = [
-        new HtmlWebpackPlugin({
-            title: 'React epam course',
-            hash: true,
-            template: './index.html'
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'React epam course',
+        //     hash: true,
+        //     template: './index.html'
+        // }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
@@ -29,6 +29,7 @@ module.exports = function(env, options) {
         context: path.join(__dirname, 'src'),
         mode: isProduction ? 'production' : 'development',
         entry: [
+            'babel-polyfill',
             'react-hot-loader/patch',
             './index.jsx'
         ],

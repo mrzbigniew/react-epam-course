@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../button';
 
+import { connect } from 'react-redux';
+
 import './styles/styles.scss';
 
 const SearchButton = ({ onClick }) => {
@@ -11,13 +13,14 @@ const SearchButton = ({ onClick }) => {
                 className="brn btn-primary btn-sm"
                 label={'search'}
                 onClick={onClick}
-            />
+            >
+                search
+            </Button>
         </div>
     )
 }
 
 SearchButton.propTypes = {
-    label: PropTypes.string,
     onClick: PropTypes.func
 }
 

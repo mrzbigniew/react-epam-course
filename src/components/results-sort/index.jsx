@@ -1,26 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Button from '../button';
+import { setSearchResultsSortOrder } from '../../actions/results';
 
-const ResultsSort = ({sortItems, onClick, sortBy}) => {
+let ResultsSort = ({ dispatch, children, value, active }) => {
     return (
-        <div className="results-sort">
-            <b>Sort by:</b> {sortItems.map(item => <Button
-                key={item}
-                className={`btn btn-sm btn-${item === sortBy
-                ? 'success'
-                : 'link'}`}
-                onClick={() => onClick(item)}
-                label={item.replace(/[^a-zA-Z0-9]+/g,' ')}/>)}
-        </div>
+        active ? (<span className="btn btn-sm btn-success">{children}</span>)
+            : (
+                <Button className="btn btn-sm btn-link"
+                    onClick={
+                        () => dispatch(setSearchResultsSortOrder(value))
+                    }
+                >
+                    {children}
+                </Button>
+            )
     );
 }
 
 ResultsSort.propTypes = {
-    sortItems: PropTypes.arrayOf(PropTypes.string),
-    onClick: PropTypes.func,
-    sortBy: PropTypes.string
-}
+    dispatch: PropTypes.func,
+    children: PropTypes.node,
+    value: PropTypes.string,
+    active: PropTypes.bool
+};
+
+ResultsSort = connect(
+    (state, ownProps) => ({
+        active: state.results.sort === ownProps.value
+    })
+)(ResultsSort);
 
 export default ResultsSort;

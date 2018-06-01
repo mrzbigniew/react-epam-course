@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 
 import './styles/styles.scss';
 
-const SearchField = ({onKeyUp, placeholder, label}) => {
+const SearchField = ({ onChange }) => {
     return (
         <div className="search-field">
             <div className="form-group">
                 <label
                     htmlFor="searchInput"
-                    className="control-label text-uppercase font-montserrat">{label}
+                    className="control-label text-uppercase font-montserrat">Search for movie
                 </label>
                 <div>
                     <input id="searchInput"
-                           className="form-control"
-                           onKeyUp={(event) => onKeyUp(event)}
-                           placeholder={placeholder}/>
+                        className="form-control"
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder={`type to search`}
+                        autoComplete={`off`}
+                    />
                 </div>
             </div>
         </div>
@@ -23,9 +25,7 @@ const SearchField = ({onKeyUp, placeholder, label}) => {
 }
 
 SearchField.propTypes = {
-    onKeyUp: PropTypes.func,
-    placeholder: PropTypes.string,
-    label: PropTypes.string
+    onChange: PropTypes.func
 }
 
 export default SearchField;

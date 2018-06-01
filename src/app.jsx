@@ -1,21 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { loadMovies } from './actions/movies';
+import { connect } from 'react-redux';
 
 import ErrorBoundary from './components/error-boundary';
-
 import MovieList from './scenes/movie-list';
-import Movie from './scenes/movie';
+import Cover from './components/cover';
 
 import 'bootstrap/scss/bootstrap.scss';
 import './styles/reset.scss';
 
-const App = () => {
-    return (
-        <ErrorBoundary>
-             <MovieList />
-             <Movie />
-        </ErrorBoundary>
+@connect((state) => ({
+    movies: state.movies.data
+}), (dispatch) => ({
+    loadMovies: () => dispatch(loadMovies())
+}))
+export default class App extends React.Component {
+    componentDidMount() {
+        if (!this.props.movies.data.length) {
+            this.props.loadMovies();
+        }
+    }
 
-    );
-};
+    render() {
+        return (
+            <ErrorBoundary>
+                <Cover />
+                <MovieList />
+            </ErrorBoundary>
+        );
+    }
 
-export default App;
+}
+
+App.propTypes = {
+    loadMovies: PropTypes.func,
+    movies: PropTypes.arrayOf(PropTypes.object)
+}
