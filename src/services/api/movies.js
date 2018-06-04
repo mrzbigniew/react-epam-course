@@ -1,3 +1,5 @@
+import { call } from 'redux-saga/effects';
+
 const endpoint = 'http://react-cdp-api.herokuapp.com/';
 
 const glue = (strings, ...values) => values[2] ? `${values[0]}${values[1]}?${values[2]}` : `${values[0]}${values[1]}`;

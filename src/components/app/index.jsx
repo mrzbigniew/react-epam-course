@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loadMovies } from '../../actions/movies';
 import { connect } from 'react-redux';
@@ -26,8 +26,9 @@ export default class App extends React.Component {
     }
 
     render() {
+        const Router = this.props.router;
         return (
-            <Router>
+            <Router location={this.props.location} context={this.props.context}>
                 <Switch>
                     <Route exact path="/" component={MovieList} />
                     <Route path="/search/:filter :text" component={MovieList} />
@@ -41,5 +42,13 @@ export default class App extends React.Component {
 
 App.propTypes = {
     loadMovies: PropTypes.func,
-    movies: PropTypes.arrayOf(PropTypes.object)
+    movies: PropTypes.arrayOf(PropTypes.object),
+    router: PropTypes.object,
+    location: PropTypes.string,
+    context: PropTypes.object
+}
+
+App.defaultProps = {
+    location: null,
+    context: null,
 }

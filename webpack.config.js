@@ -40,7 +40,8 @@ module.exports = function(env, options) {
         },
         devServer: {
             contentBase: '/dist/',
-            hot: true
+            hot: true,
+            historyApiFallback: true
         },
         module: {
             rules: [{

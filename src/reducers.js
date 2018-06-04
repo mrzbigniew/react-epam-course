@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
+import { all } from 'redux-saga/effects';
 
-import movies from './reducers/movies';
+import movies, { moviesSaga } from './actions/movies';
 import movie from './reducers/movie';
 import spinner from './reducers/spinner';
 import search from './reducers/search';
@@ -13,5 +14,11 @@ const reducer = combineReducers({
     search,
     results
 });
+
+export function* rootSaga() {
+    yield all([
+        moviesSaga(),
+    ]);
+  }
 
 export default reducer;
