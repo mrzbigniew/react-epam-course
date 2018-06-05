@@ -3,11 +3,11 @@ import { withRouter } from 'react-router-dom';
 
 import Button from '../../../../components/button';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const BackToSearch = withRouter(({ history }) => {
     return (
-        <Button className="btn btn-text btn-sm back-to-search"
+        <Button className={`btn btn-text btn-sm ${styles.backToSearch}`}
                 onClick={history.goBack}
         >
             search

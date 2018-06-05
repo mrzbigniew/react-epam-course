@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const NotFound = () => {
     return (
-        <div className="not-found">
+        <div className={styles.notFound}>
             <span>404 Not found</span>
         </div>
     );

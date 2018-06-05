@@ -10,7 +10,7 @@ import BackToSearch from './components/back-to-search';
 import MovieDetails from './components/movie-details';
 import ResultsList from './components/results-list';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const Movie = () => {
     return (
@@ -20,7 +20,7 @@ const Movie = () => {
                     <Logo />
                     <BackToSearch />
                 </div>
-                <MovieDetails />
+                <MovieDetails className={styles.movieDetails}/>
             </Header>
             <Content>
                 <ResultsList />

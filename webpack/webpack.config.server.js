@@ -5,7 +5,10 @@ const common = require('./webpack.config.common');
 module.exports = merge(common, {
     name: 'server',
     target: 'node',
-    entry: '../src/serverRenderer.js',
+    entry: [
+        'babel-polyfill',
+        './src/serverRenderer.js'
+    ],
     externals: [nodeExternals()],
     output: {
         filename: 'js/serverRenderer.js',
@@ -13,13 +16,15 @@ module.exports = merge(common, {
     },
     module: {
         rules: [{
-            test: /\.css$/,
+            test: /\.s?css$/,
+            exclude: /node_modules/,
             include: /src/,
             use: [{
                     loader: 'css-loader/locals',
                     options: {
                         modules: true,
                         localIdentName: '[name]-[hash:5]',
+                        camelCase: true
                     }
                 },
                 'sass-loader'

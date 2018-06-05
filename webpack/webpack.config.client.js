@@ -14,13 +14,16 @@ module.exports = merge(common, {
     name: 'client',
     target: 'web',
     entry: [
+        'babel-polyfill',
         isDev && 'webpack-hot-middleware/client',
-        '../src/client.jsx'
+        './src/client.jsx'
     ].filter(Boolean),
 
     module: {
         rules: [{
-            test: /\.scss$/,
+            test: /\.s?css$/,
+            include: /src/,
+            exclude: /node_modules/,
             use: [
                 isDevMod ? 'style-loader' : MiniCssExtractPlugin.loader,
                 {
@@ -28,6 +31,7 @@ module.exports = merge(common, {
                     options: {
                         modules: true,
                         localIdentName: '[name]-[hash:5]',
+                        camelCase: true
                     },
                 },
                 'sass-loader'

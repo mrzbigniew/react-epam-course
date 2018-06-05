@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const MovieTitle = ({title}) => {
     return (
-        <span className="movie-title">{title}</span>
+        <span className={styles.movieTitle}>{title}</span>
     )
 }
 

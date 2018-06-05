@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieImage from '../movie-image';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const ResultsItem = ({ poster_path, title, release_year, genre, onClick }) => {
     return (
-        <div className="result-item" onClick={onClick}>
-            <div className="result--item-image">
+        <div className={styles.resultItem} onClick={onClick}>
+            <div className={styles.resultItemImage}>
                 <MovieImage width="200"
                     src={poster_path}
                     alt={title}
-                    className="image"
+                    className={styles.image}
                 />
             </div>
             <div className="w-100 d-flex justify-content-between">

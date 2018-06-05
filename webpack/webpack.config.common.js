@@ -7,25 +7,29 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-    context: path.join(__dirname, './'),
     mode: !isDev ? 'production' : 'development',
     output: {
-        path: __dirname + '/public',
-        publicPath: '/',
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        path: path.resolve('./public')
     },
     module: {
         rules: [{
-            test: /\.js|\.jsx/,
+            test: /\.jsx?$/,
             exclude: /node_modules/,
-            use: ['babel-loader']
-        }, {
-            test: /\.(ttf|eot|svg|woff|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            exclude: /node_modules/,
-            loader: "file-loader",
-            options: {
-                name: '[path][name].[hash].[ext]'
-            }
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        'env',
+                        'react',
+                        'stage-0',
+                        'stage-2'
+                    ],
+                    plugins: [
+                        'transform-decorators-legacy'
+                    ]
+                }
+            }]
         }]
     },
     resolve: {

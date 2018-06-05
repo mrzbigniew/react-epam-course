@@ -4,13 +4,13 @@ import Button from '../button';
 
 import { connect } from 'react-redux';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const SearchButton = ({ onClick }) => {
     return (
-        <div className="search-button">
+        <div className={styles.searchButton}>
             <Button
-                className="brn btn-primary btn-sm"
+                className={`brn btn-primary btn-sm ${styles.btnSm}`}
                 label={'search'}
                 onClick={onClick}
             >

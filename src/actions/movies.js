@@ -59,3 +59,9 @@ export function* moviesSaga() {
     getMovies()
   ]);
 }
+
+export function* rootSaga() {
+  yield all([
+      moviesSaga(),
+  ]);
+}

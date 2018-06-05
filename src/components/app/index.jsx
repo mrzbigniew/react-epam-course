@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Router as defaultRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loadMovies } from '../../actions/movies';
 import { connect } from 'react-redux';
@@ -10,21 +10,10 @@ import MovieList from '../../scenes/movie-list';
 import NotFound from '../not-found';
 import Cover from '../cover';
 
-import 'bootstrap/scss/bootstrap.scss';
-import './styles/reset.scss';
-
 @connect((state) => ({
     movies: state.movies.data
-}), (dispatch) => ({
-    loadMovies: () => dispatch(loadMovies())
 }))
 export default class App extends React.Component {
-    componentDidMount() {
-        if (!this.props.movies.data.length) {
-            this.props.loadMovies();
-        }
-    }
-
     render() {
         const Router = this.props.router;
         return (
@@ -41,14 +30,14 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-    loadMovies: PropTypes.func,
     movies: PropTypes.arrayOf(PropTypes.object),
-    router: PropTypes.object,
+    router: PropTypes.func,
     location: PropTypes.string,
     context: PropTypes.object
 }
 
 App.defaultProps = {
-    location: null,
-    context: null,
+    location: '/',
+    context: {},
+    router: defaultRouter
 }

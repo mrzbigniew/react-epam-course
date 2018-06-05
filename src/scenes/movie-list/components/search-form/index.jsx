@@ -11,12 +11,12 @@ import './styles/styles.scss';
 import { SEARCH_BY_TITLE, SEARCH_BY_GENRE, setSearchText } from '../../../../actions/search';
 import { setSearchResults } from '../../../../actions/results';
 
-let SearchForm = ({ history, setText, filter, text }) => {
+let SearchForm = ({ history, setText, filter, text, className }) => {
     const search = () => {
         history.push(`/search/${filter} ${text}`);
     }
     return (
-        <form className="search-form" onSubmit={(e) => { e.preventDefault(); search(); }}>
+        <form className={`search-form ${className}`} onSubmit={(e) => { e.preventDefault(); search(); }}>
             <div className="row no-gutters">
                 <div className="col-12">
                     <SearchField onChange={setText} />
@@ -49,7 +49,8 @@ SearchForm.propTypes = {
     doSearch: PropTypes.func,
     setText: PropTypes.func,
     filter: PropTypes.string,
-    text: PropTypes.string
+    text: PropTypes.string,
+    className: PropTypes.string
 }
 
 SearchForm = withRouter(connect(

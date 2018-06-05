@@ -11,10 +11,10 @@ import MovieYear from '../../../../components/movie-year';
 import MovieDuration from '../../../../components/movie-duration';
 import MovieDescription from '../../../../components/movie-description';
 
-let MovieDetails = ({movies, match}) => {
+let MovieDetails = ({movies, match, className}) => {
     const movie = movies.find((movie) => movie.id.toString() === match.params.id);
     return (
-        <div className="movie-details">
+        <div className={`movie-details ${className}`}>
             <div className="d-flex align-items-stretch justify-content-start m-2">
                 <div className="d-flex align-items-center justify-content-center p-3 w-25">
                     <MovieCover src={movie.poster_path} alt={movie.title} />
@@ -48,7 +48,8 @@ let MovieDetails = ({movies, match}) => {
 
 MovieDetails.propTypes = {
     movies: PropTypes.array,
-    match: PropTypes.object
+    match: PropTypes.object,
+    className: PropTypes.string
 };
 
 MovieDetails = withRouter(connect(

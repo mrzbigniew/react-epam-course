@@ -11,7 +11,8 @@ const root = (
   <Root
     Router={BrowserRouter}
     store={store}
+    persistor={persistor}
   />
 );
 
-hydrate(root, document.getElementById('root'));
+ReactDOM.hydrate(root, document.getElementById('root'));
