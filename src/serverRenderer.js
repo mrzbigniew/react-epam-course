@@ -90,8 +90,7 @@ export default function serverRenderer() {
     }
 
     const context = {};
-    const root = ( <
-      Root context = {
+    const root = ( <Root context = {
         context
       }
       location = {
