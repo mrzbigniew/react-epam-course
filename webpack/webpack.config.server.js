@@ -13,6 +13,7 @@ module.exports = merge(common, {
     output: {
         filename: 'js/serverRenderer.js',
         libraryTarget: 'commonjs2',
+        publicPath: '/'
     },
     module: {
         rules: [{

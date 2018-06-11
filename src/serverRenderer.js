@@ -9,6 +9,7 @@ import {
 import Root from './components/root';
 import configureStore from './configureStore';
 import { setSearchFilter, setSearchText } from './actions/search';
+import Loadable from 'react-loadable';
 
 function renderHTML(html, preloadedState) {
   return `
@@ -90,22 +91,22 @@ export default function serverRenderer() {
     }
 
     const context = {};
-    const root = ( <Root context = {
-        context
-      }
-      location = {
+    const root = (<Root context={
+      context
+    }
+      location={
         req.url.replace('%20', ' ')
       }
-      router = {
+      router={
         StaticRouter
       }
-      store = {
+      store={
         store
       }
-      persistor = {
+      persistor={
         persistor
       }
-      />
+    />
     );
 
     store.runSaga().done.then(() => {
@@ -121,7 +122,9 @@ export default function serverRenderer() {
 
       const preloadedState = store.getState();
 
-      res.send(renderHTML(htmlString, preloadedState));
+      Loadable.preloadAll().then(() => {
+        res.send(renderHTML(htmlString, preloadedState));
+      })
     });
 
     store.close();

@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 import App from '../app';
+
+const modules = [];
 
 const Root = ({ store, persistor, router, location, context }) => {
     return (
@@ -13,6 +16,8 @@ const Root = ({ store, persistor, router, location, context }) => {
         </Provider >
     );
 };
+
+console.log(modules);
 
 Root.propTypes = {
     store: PropTypes.object.isRequired,

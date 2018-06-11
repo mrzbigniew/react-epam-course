@@ -6,16 +6,26 @@ import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 
 import ErrorBoundary from '../error-boundary';
-// import Movie from '../../scenes/movie';
+import Movie from '../../scenes/movie';
 import MovieList from '../../scenes/movie-list';
 import NotFound from '../not-found';
 
 import Cover from '../cover';
 
-const Movie = Loadable({
-    loader: () => import('../../scenes/movie'),
-    loading: Cover
-})
+// const MovieList = Loadable({
+//     loader: () => import('../../scenes/movie-list'),
+//     loading: Cover
+// });
+
+// const Movie = Loadable({
+//     loader: () => import('../../scenes/movie'),
+//     loading: Cover,
+// });
+
+// const NotFound = Loadable({
+//     loader: () => import('../not-found'),
+//     loading: Cover
+// });
 
 @connect((state) => ({
     movies: state.movies.data
