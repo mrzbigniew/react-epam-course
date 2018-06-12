@@ -1,22 +1,20 @@
 import configureStore from './configureStore';
 
 describe('configureStore', () => {
-    it('should be a function', () => {
-        expect(configureStore).toBeInstanceOf(Function);
-    });
+  it('should be a function', () => {
+    expect(configureStore).toBeInstanceOf(Function);
+  });
 
-    it('should return object with store and persister objects', () => {
-        let result = configureStore();
+  it('should return object with store and persister objects', () => {
+    let result = configureStore();
 
-        expect(result.store).toBeDefined();
-        expect(result.persistor).toBeDefined();
+    expect(result.store).toBeDefined();
+    expect(result.persistor).toBeDefined();
 
-        global.window.devToolsExtension = () => {
-            return f => f
-        }
+    global.window.devToolsExtension = () => f => f;
 
-        result = configureStore();
-        expect(result.store).toBeDefined();
-        expect(result.persistor).toBeDefined();
-    });
+    result = configureStore();
+    expect(result.store).toBeDefined();
+    expect(result.persistor).toBeDefined();
+  });
 });

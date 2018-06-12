@@ -1,31 +1,27 @@
 {
     "parser": "babel-eslint",
     "plugins": [
+        "import",
         "react",
-        "jest",
         "jsx-a11y",
+        "jest",
         "cypress",
         "chai-friendly"
     ],
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:jest/recommended"],
+    "extends": [
+        "airbnb-base",
+        "plugin:jest/recommended"
+    ],
     "rules": {
-        "no-trailing-spaces": "error",
-        "no-multiple-empty-lines": [
-            "error", {
-                "max": 1,
-                "maxEOF": 1,
-                "maxBOF": 0
+        "max-len": [
+            1,
+            120,
+            2,
+            {
+                "ignoreComments": true
             }
         ],
-        "no-empty": ["error", {
-            "allowEmptyCatch": true
-        }],
-        "no-undef": "off",
-        "no-unused-expressions": 0,
-        "chai-friendly/no-unused-expressions": 2,
-        "jest/valid-expect": 0,
-        "no-unused-vars": "off",
-        "no-console": "off"
+        "prop-types": 2
     },
     "globals": {
         "module": true
@@ -38,4 +34,3 @@
         "cypress/globals": true
     }
 }
-

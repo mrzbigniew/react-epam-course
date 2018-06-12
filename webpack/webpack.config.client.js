@@ -11,41 +11,41 @@ const isDevMod = process.env.NODE_ENV === 'development';
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = merge(common, {
-    name: 'client',
-    target: 'web',
-    entry: [
-        'babel-polyfill',
-        isDev && 'webpack-hot-middleware/client',
-        './src/client.jsx'
-    ].filter(Boolean),
+  name: 'client',
+  target: 'web',
+  entry: [
+    'babel-polyfill',
+    isDev && 'webpack-hot-middleware/client',
+    './src/client.jsx',
+  ].filter(Boolean),
 
-    module: {
-        rules: [{
-            test: /\.s?css$/,
-            include: /src/,
-            exclude: /node_modules/,
-            use: [
-                isDevMod ? 'style-loader' : MiniCssExtractPlugin.loader,
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
-                        localIdentName: '[name]-[hash:5]',
-                        camelCase: true
-                    },
-                },
-                'sass-loader'
-            ],
-        }, ],
-    },
+  module: {
+    rules: [{
+      test: /\.s?css$/,
+      include: /src/,
+      exclude: /node_modules/,
+      use: [
+        isDevMod ? 'style-loader' : MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            localIdentName: '[name]-[hash:5]',
+            camelCase: true,
+          },
+        },
+        'sass-loader',
+      ],
+    }],
+  },
 
-    plugins: [
-        !isDevMod && new CleanWebpackPlugin('./public', {
-            root: path.resolve(__dirname, '../')
-        }),
-        isDevMod && new webpack.HotModuleReplacementPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-        })
-    ].filter(Boolean),
+  plugins: [
+    !isDevMod && new CleanWebpackPlugin('./public', {
+      root: path.resolve(__dirname, '../'),
+    }),
+    isDevMod && new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+  ].filter(Boolean),
 });
