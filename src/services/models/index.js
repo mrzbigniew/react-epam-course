@@ -1,1 +1,1 @@
-export * from './movie-item.model';
+export { MovieItemModel } from './movie-item.model';

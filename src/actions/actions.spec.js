@@ -15,8 +15,22 @@ import {
   MOVIES_DATA_LOADING_ERROR,
 } from './movies';
 import { SET_SPINNER_STATE, showSpinner, hideSpinner } from './spinner';
-import { setSearchResultsSortOrder, SET_SEARCH_RESULTS_SORT_ORDER, SET_SEARCH_RESULTS_DATA, setSearchResults, SET_SEARCH_RESULTS_CRITERIA, sortResults, SORT_BY_RELEASE_DATE, SORT_BY_RATING, getFiltered } from './results';
-import { setSearchText, SET_SEARCH_TEXT, SET_SEARCH_FILTER, setSearchFilter, searchMovies, SEARCH_BY_TITLE, SEARCH_BY_GENRE } from './search';
+import {
+  setSearchResultsSortOrder,
+  SET_SEARCH_RESULTS_SORT_ORDER,
+  SET_SEARCH_RESULTS_CRITERIA,
+  sortResults, SORT_BY_RELEASE_DATE,
+  SORT_BY_RATING, getFiltered,
+} from './results';
+import {
+  setSearchText,
+  SET_SEARCH_TEXT,
+  SET_SEARCH_FILTER,
+  setSearchFilter,
+  searchMovies,
+  SEARCH_BY_TITLE,
+  SEARCH_BY_GENRE,
+} from './search';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

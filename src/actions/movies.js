@@ -1,6 +1,6 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { put, all } from 'redux-saga/effects';
 
-import { fetchMovies, fetchMoviesAsync } from '../services/api/movies';
+import { fetchMovies } from '../services/api/movies';
 import { showSpinner, hideSpinner } from './spinner';
 
 export const MOVIES_DATA_LOADING_START = 'MOVIES_DATA_LOADING_START';

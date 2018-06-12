@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
-import { SET_SEARCH_RESULTS_CRITERIA, SET_SEARCH_RESULTS_DATA, SET_SEARCH_RESULTS_SORT_ORDER, SORT_BY_RELEASE_DATE, SORT_BY_RATING } from '../actions/results';
-import { SEARCH_BY_TITLE } from '../actions/search';
+import { SET_SEARCH_RESULTS_SORT_ORDER, SORT_BY_RELEASE_DATE } from '../actions/results';
 
 const results = (state = {
   sort: SORT_BY_RELEASE_DATE,

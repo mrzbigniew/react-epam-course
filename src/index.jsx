@@ -18,7 +18,7 @@ if(process.env === 'production') {
 
 const render = () => {
     ReactDOM.hydrate(
-        <Root store={store} persistor={persistor} router={router} />,
+        <Root store={store} router={router} />,
         document.getElementById('app')
     );
 }

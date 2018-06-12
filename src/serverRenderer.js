@@ -2,10 +2,11 @@ import 'isomorphic-fetch';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import Loadable from 'react-loadable';
+
 import Root from './components/root';
 import configureStore from './configureStore';
 import { setSearchFilter, setSearchText } from './actions/search';
-import Loadable from 'react-loadable';
 
 function renderHTML(html, preloadedState) {
   return `
