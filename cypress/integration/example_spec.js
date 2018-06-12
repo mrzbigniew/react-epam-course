@@ -699,7 +699,7 @@ describe('Kitchen Sink', () => {
           // return an array of texts from all of the p's
             let texts = $p.map((i, el) =>
             // https://on.cypress.io/$
-              Cypress.$(el).text(),);
+              Cypress.$(el).text());
 
             // jquery map returns jquery object
             // and .get() convert this to simple array
