@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { combineReducers } from 'redux';
 
 import { SEARCH_BY_TITLE, SET_SEARCH_TEXT, SET_SEARCH_FILTER } from '../actions/search';

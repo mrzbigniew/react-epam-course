@@ -5,24 +5,22 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '../app';
 
-const Root = ({ store, router, location }) => {
-    return (
-        <Provider store={store}>
-            <App router={router} location={location} />
-        </Provider >
-    );
-};
+const Root = ({ store, router, location }) => (
+    <Provider store={store}>
+        <App router={router} location={location} />
+    </Provider >
+);
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired,
-    router: PropTypes.func,
-    location: PropTypes.string
-}
+  store: PropTypes.object.isRequired,
+  router: PropTypes.func,
+  location: PropTypes.string,
+};
 
 App.defaultProps = {
-    location: null,
-    context: {},
-    router: BrowserRouter
-}
+  location: null,
+  context: {},
+  router: BrowserRouter,
+};
 
 export default Root;

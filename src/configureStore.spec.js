@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import configureStore from './configureStore';
 
 describe('configureStore', () => {

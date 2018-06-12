@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { put, all } from 'redux-saga/effects';
 
 import { fetchMovies } from '../services/api/movies';
@@ -44,6 +46,10 @@ export const loadMovies = () => async (dispatch) => {
   } catch (error) {
     dispatch(moviesLoadingError(error));
     dispatch(hideSpinner());
+    return dispatch(moviesDataSet({
+      data: [],
+      total: 0,
+    }));
   }
 };
 

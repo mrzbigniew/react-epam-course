@@ -1,3 +1,4 @@
+/* eslint-disable prop-types, max-len */
 const movies = [
   {
     id: 412302,

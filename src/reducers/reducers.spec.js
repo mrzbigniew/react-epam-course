@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import movie, {
   MOVIE_DATA_GET,
   MOVIE_DATA_SET,
@@ -7,7 +9,7 @@ import movie, {
   MOVIE_LOADING_START,
 } from './movie';
 
-import movies from './movies';
+import { movies } from './movies';
 import {
   MOVIES_DATA_LOADING_START,
   MOVIES_DATA_LOADING_SUCCESS,
@@ -17,8 +19,6 @@ import {
 } from '../actions/movies';
 import {
   SORT_BY_RELEASE_DATE,
-  SET_SEARCH_RESULTS_DATA,
-  SET_SEARCH_RESULTS_CRITERIA,
   SET_SEARCH_RESULTS_SORT_ORDER,
 } from '../actions/results';
 import results from './results';
@@ -28,7 +28,6 @@ import {
   SET_SEARCH_TEXT,
 } from '../actions/search';
 import search from './search';
-import { exec } from 'child_process';
 import spinner from './spinner';
 import { SET_SPINNER_STATE } from '../actions/spinner';
 

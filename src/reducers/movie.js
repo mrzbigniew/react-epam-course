@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { combineReducers } from 'redux';
 
 export const MOVIE_LOADING_START = 'MOVIE_LOADING_START';

@@ -1,3 +1,5 @@
+/* eslint-disable prop-types, no-nested-ternary, max-len */
+
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -34,7 +36,6 @@ import {
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-const initialState = {};
 
 describe('Movies actions', () => {
   let store;
@@ -58,7 +59,7 @@ describe('Movies actions', () => {
   });
 
   it('#moviesLoadingSuccess', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: MOVIES_DATA_LOADING_SUCCESS,
     }]);
@@ -69,7 +70,7 @@ describe('Movies actions', () => {
   });
 
   it('#moviesLoadingError', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: MOVIES_DATA_LOADING_ERROR,
       error: 'error',
@@ -81,7 +82,7 @@ describe('Movies actions', () => {
   });
 
   it('#moviesDataSet ', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: MOVIES_DATA_SET,
       data: [],
@@ -97,7 +98,7 @@ describe('Movies actions', () => {
   });
 
   it('#moviesDataClean ', () => {
-    const store = mockStore({});
+    store = mockStore({});
 
     const expectedAction = ([{
       type: MOVIES_DATA_CLEAN,
@@ -109,7 +110,7 @@ describe('Movies actions', () => {
   });
 
   it('#loadMovies:success', (done) => {
-    const store = mockStore({});
+    store = mockStore({});
     fetch.mockResponseOnce(JSON.stringify({
       data: {
         data: [{
@@ -146,7 +147,7 @@ describe('Movies actions', () => {
   });
 
   it('#loadMovies:error', (done) => {
-    const store = mockStore({});
+    store = mockStore({});
     const error = 'error';
     fetch.mockRejectOnce(error);
 
@@ -182,7 +183,7 @@ describe('results', () => {
   });
 
   it('#setSearchResultsSortOrder', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SEARCH_RESULTS_SORT_ORDER,
       value: 1,
@@ -265,7 +266,7 @@ describe('search', () => {
   });
 
   it('#setSearchText', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SEARCH_TEXT,
       value: 'text',
@@ -277,7 +278,7 @@ describe('search', () => {
   });
 
   it('#setSearchFilter', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SEARCH_FILTER,
       value: 'filter',
@@ -289,7 +290,7 @@ describe('search', () => {
   });
 
   it('#searchMovies', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SEARCH_RESULTS_CRITERIA,
       filter: 'filter',
@@ -314,7 +315,7 @@ describe('spinner', () => {
   });
 
   it('#showSpinner', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SPINNER_STATE,
       value: true,
@@ -326,7 +327,7 @@ describe('spinner', () => {
   });
 
   it('#hideSpinner', () => {
-    const store = mockStore({});
+    store = mockStore({});
     const expectedAction = ([{
       type: SET_SPINNER_STATE,
       value: false,

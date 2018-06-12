@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 export const SET_SPINNER_STATE = 'SET_SPINNER_STATE';
 
 export const showSpinner = () => ({

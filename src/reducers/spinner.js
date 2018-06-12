@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { SET_SPINNER_STATE } from '../actions/spinner';
 
 const spinner = (state = false, action) => {

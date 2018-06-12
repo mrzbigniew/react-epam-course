@@ -1,4 +1,4 @@
-import { call } from 'redux-saga/effects';
+/* eslint-disable prop-types */
 
 const endpoint = 'http://react-cdp-api.herokuapp.com/';
 
@@ -16,9 +16,9 @@ export const fetchData = async ({ path, params }) => {
     method: 'GET',
     mode: 'cros',
   });
-  return await data.json();
+  return data.json();
 };
 
-export const fetchMovies = async (params = { offset: 0, limit: 10000 }) => await fetchData({ path: 'movies', params });
+export const fetchMovies = async (params = { offset: 0, limit: 10000 }) => fetchData({ path: 'movies', params });
 
-export const fetchMovie = async id => await fetchData({ path: `movies/${id}` });
+export const fetchMovie = async id => fetchData({ path: `movies/${id}` });

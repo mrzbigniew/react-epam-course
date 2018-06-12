@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { fetchMovie, fetchMovies, fetchData } from './movies';
 
 global.fetch = require('jest-fetch-mock');

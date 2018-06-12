@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { combineReducers } from 'redux';
 
 import {

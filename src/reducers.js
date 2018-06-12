@@ -1,5 +1,6 @@
+/* eslint-disable prop-types */
+
 import { combineReducers } from 'redux';
-import { all } from 'redux-saga/effects';
 
 import { movies } from './reducers/movies';
 import movie from './reducers/movie';

@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { SET_SEARCH_RESULTS_SORT_ORDER, SORT_BY_RELEASE_DATE } from '../actions/results';
 
 const results = (state = {

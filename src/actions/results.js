@@ -1,3 +1,4 @@
+/* eslint-disable prop-types, no-nested-ternary */
 import { SEARCH_BY_TITLE } from './search';
 
 export const SET_SEARCH_RESULTS_DATA = 'SET_SEARCH_RESULTS_DATA';

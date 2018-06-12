@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import PropTypes from 'prop-types';
 
 const MovieItemModel = {

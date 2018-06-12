@@ -1,3 +1,5 @@
+/* eslint-disable prop-types */
+
 import { SET_SEARCH_RESULTS_CRITERIA } from './results';
 
 export const SEARCH_BY_TITLE = 'title';
