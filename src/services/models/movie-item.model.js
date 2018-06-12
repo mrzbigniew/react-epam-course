@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const MovieItemModel = {
+const MovieItemModel = {
   id: PropTypes.number,
   title: PropTypes.string,
   tagline: PropTypes.string,
@@ -14,3 +14,5 @@ export const MovieItemModel = {
   runtime: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
 };
+
+export default MovieItemModel;
