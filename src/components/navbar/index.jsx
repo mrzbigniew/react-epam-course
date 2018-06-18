@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Navbar = ({children, className}) => {
-    return (
+const Navbar = ({ children, className }) => (
         <div className={`navbar ${className || ''}`}>
             {children}
         </div>
-    );
-};
+);
 
 Navbar.propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
-}
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 export default Navbar;

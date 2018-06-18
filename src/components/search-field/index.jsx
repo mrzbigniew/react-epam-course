@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles/styles.scss';
 
-const SearchField = ({ onChange }) => {
-    return (
+const SearchField = ({ onChange }) => (
         <div className={styles.searchField}>
             <div className={`form-group ${styles.formGroup}`}>
                 <label
@@ -14,18 +13,17 @@ const SearchField = ({ onChange }) => {
                 <div>
                     <input id="searchInput"
                         className={`form-control ${styles.formControl}`}
-                        onChange={(e) => onChange(e.target.value)}
-                        placeholder={`type to search`}
-                        autoComplete={`off`}
+                        onChange={e => onChange(e.target.value)}
+                        placeholder={'type to search'}
+                        autoComplete={'off'}
                     />
                 </div>
             </div>
         </div>
-    );
-}
+);
 
 SearchField.propTypes = {
-    onChange: PropTypes.func
-}
+  onChange: PropTypes.func,
+};
 
 export default SearchField;

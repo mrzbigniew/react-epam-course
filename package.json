@@ -14,10 +14,11 @@
         "start-dev:ssr": "cross-env NODE_ENV=development node ./server",
         "start-prod:ssr": "cross-env NODE_ENV=production node ./server",
         "build-prod:ssr": "cross-env NODE_ENV=production webpack --config ./webpack",
-        "lint": "eslint ./src --cache --ignore-pattern .gitignore --fix",
+        "lint": "eslint ./src/** --cache --ignore-pattern .gitignore  --fix",
         "build": "babel src/ -d lib/",
         "prepublish": "npm run build",
-        "flow": "flow"
+        "flow": "flow",
+        "storybook": "start-storybook -p 9001 -c .storybook"
     },
     "repository": {
         "type": "git",
@@ -31,6 +32,9 @@
     },
     "homepage": "https://github.com/mrzbigniew/react-epam-course#readme",
     "devDependencies": {
+        "@storybook/addon-actions": "^3.4.7",
+        "@storybook/cli": "^3.4.7",
+        "@storybook/react": "^3.4.7",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-eslint": "^8.2.3",
@@ -59,6 +63,7 @@
         "eslint-loader": "^2.0.0",
         "eslint-plugin-chai-friendly": "^0.4.1",
         "eslint-plugin-cypress": "^2.0.1",
+        "eslint-plugin-flowtype": "^2.49.3",
         "eslint-plugin-import": "^2.12.0",
         "eslint-plugin-jest": "^21.17.0",
         "eslint-plugin-jsx-a11y": "^6.0.3",

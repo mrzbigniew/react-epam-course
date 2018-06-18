@@ -1,10 +1,10 @@
 import React from 'react';
-import { Router as defaultRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { loadMovies } from '../../actions/movies';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Loadable from 'react-loadable';
+import { Router as defaultRouter, Route, Switch } from 'react-router-dom';
 
+import { loadMovies } from '../../actions/movies';
 import ErrorBoundary from '../error-boundary';
 import Movie from '../../scenes/movie';
 import MovieList from '../../scenes/movie-list';
@@ -27,13 +27,13 @@ import Cover from '../cover';
 //     loading: Cover
 // });
 
-@connect((state) => ({
-    movies: state.movies.data
+@connect(state => ({
+  movies: state.movies.data,
 }))
 export default class App extends React.Component {
-    render() {
-        const Router = this.props.router;
-        return (
+  render() {
+    const Router = this.props.router;
+    return (
             <ErrorBoundary>
                 <Router location={this.props.location} context={this.props.context}>
                     <Switch>
@@ -44,19 +44,19 @@ export default class App extends React.Component {
                     </Switch>
                 </Router>
             </ErrorBoundary>
-        );
-    }
+    );
+  }
 }
 
 App.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.object),
-    router: PropTypes.func,
-    location: PropTypes.string,
-    context: PropTypes.object
-}
+  movies: PropTypes.arrayOf(PropTypes.object),
+  router: PropTypes.func,
+  location: PropTypes.string,
+  context: PropTypes.object,
+};
 
 App.defaultProps = {
-    location: '/',
-    context: {},
-    router: defaultRouter
-}
+  location: '/',
+  context: {},
+  router: defaultRouter,
+};

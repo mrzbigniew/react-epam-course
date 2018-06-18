@@ -11,8 +11,7 @@ import ResultsList from './components/results-list';
 
 import styles from './styles/styles.scss';
 
-const MovieList = () => {
-    return (
+const MovieList = () => (
         <Container>
             <Header>
                 <Logo />
@@ -25,7 +24,6 @@ const MovieList = () => {
                 <Logo />
             </Footer>
         </Container>
-    );
-};
+);
 
 export default MovieList;

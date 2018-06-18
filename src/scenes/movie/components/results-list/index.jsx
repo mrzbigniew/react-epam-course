@@ -9,15 +9,11 @@ import Navbar from '../../../../components/navbar';
 
 import ResultsGenreInfo from '../../../../components/results-genre-info';
 
-let ResultsList = ({ movies, match }) => {
-    const movie = movies.find(
-        movie => movie.id.toString() === match.params.id
-    );
-    const sameMovies = movies.filter(
-        current => current.genres[0] === movie.genres[0]
-    );
+const ResultsListComponent = ({ movies, match }) => {
+  const movie = movies.find(m => m.id.toString() === match.params.id);
+  const sameMovies = movies.filter(current => current.genres[0] === movie.genres[0]);
 
-    return (
+  return (
         <Content>
             <Navbar className="navbar-expand-lg navbar-light bg-light justify-content-between">
                 <ResultsGenreInfo genre={movie.genres[0]} />
@@ -26,18 +22,16 @@ let ResultsList = ({ movies, match }) => {
                 <ResultsBody movies={sameMovies} />
             </Content>
         </Content>
-    );
+  );
 };
 
-ResultsList.propTypes = {
-    movies: PropTypes.array,
-    match: PropTypes.object
+ResultsListComponent.propTypes = {
+  movies: PropTypes.array,
+  match: PropTypes.object,
 };
 
-ResultsList = withRouter(connect(
-    (state) => ({
-        movies: state.movies.data.data
-    })
-)(ResultsList));
+const ResultsList = withRouter(connect(state => ({
+  movies: state.movies.data.data,
+}))(ResultsListComponent));
 
 export default ResultsList;

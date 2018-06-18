@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import configureStore from './configureStore';
 import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
-import Root from './components/root';
+import configureStore from './configureStore';
+
+import Root from './components/root/index.jsx';
 
 const { store, persistor } = configureStore(window.PRELOADED_STATE);
 

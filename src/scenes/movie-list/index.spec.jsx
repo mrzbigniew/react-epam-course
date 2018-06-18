@@ -13,8 +13,8 @@ jest.mock('./components/search-form', () => 'SearchForm');
 jest.mock('./components/results-list', () => 'ResultsList');
 
 describe('MovieList', () => {
-    it('should render', async () => {
-        const component = renderer.create(<MovieList />);
-        expect(component.toJSON()).toMatchSnapshot();
-    });
+  it('should render', async () => {
+    const component = renderer.create(<MovieList />);
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });

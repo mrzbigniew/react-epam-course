@@ -11,9 +11,9 @@ import MovieYear from '../../../../components/movie-year';
 import MovieDuration from '../../../../components/movie-duration';
 import MovieDescription from '../../../../components/movie-description';
 
-let MovieDetails = ({movies, match, className}) => {
-    const movie = movies.find((movie) => movie.id.toString() === match.params.id);
-    return (
+const MovieDetailsComponent = ({ movies, match, className }) => {
+  const movie = movies.find(m => m.id.toString() === match.params.id);
+  return (
         <div className={`movie-details ${className}`}>
             <div className="d-flex align-items-stretch justify-content-start m-2">
                 <div className="d-flex align-items-center justify-content-center p-3 w-25">
@@ -43,19 +43,17 @@ let MovieDetails = ({movies, match, className}) => {
                 </div>
             </div>
         </div>
-    );
+  );
 };
 
-MovieDetails.propTypes = {
-    movies: PropTypes.array,
-    match: PropTypes.object,
-    className: PropTypes.string
+MovieDetailsComponent.propTypes = {
+  movies: PropTypes.array,
+  match: PropTypes.object,
+  className: PropTypes.string,
 };
 
-MovieDetails = withRouter(connect(
-    (state) => ({
-        movies: state.movies.data.data
-    })
-)(MovieDetails));
+const MovieDetails = withRouter(connect(state => ({
+  movies: state.movies.data.data,
+}))(MovieDetailsComponent));
 
 export default MovieDetails;

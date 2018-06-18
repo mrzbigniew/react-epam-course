@@ -1,6 +1,7 @@
 {
     "parser": "babel-eslint",
     "plugins": [
+        "flowtype",
         "import",
         "react",
         "jsx-a11y",
@@ -10,18 +11,24 @@
     ],
     "extends": [
         "airbnb-base",
-        "plugin:jest/recommended"
+        "plugin:jest/recommended",
+        "plugin:flowtype/recommended"
     ],
     "rules": {
         "max-len": [
             1,
-            120,
+            220,
             2,
             {
                 "ignoreComments": true
             }
         ],
-        "prop-types": 2
+        "import/no-extraneous-dependencies": "off",
+        "no-unused-vars": "off",
+        "prop-types": "off",
+        "func-names": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
     },
     "globals": {
         "module": true
@@ -32,5 +39,10 @@
         "jasmine": true,
         "jest": true,
         "cypress/globals": true
+    },
+    "settings": {
+        "flowtype": {
+            "onlyFilesWithFlowAnnotation": true
+        }
     }
 }

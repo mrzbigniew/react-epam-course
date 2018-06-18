@@ -12,8 +12,7 @@ import ResultsList from './components/results-list';
 
 import styles from './styles/styles.scss';
 
-const Movie = () => {
-    return (
+const Movie = () => (
         <Container>
             <Header>
                 <div className="row no-gutters justify-content-between">
@@ -29,7 +28,6 @@ const Movie = () => {
                 <Logo />
             </Footer>
         </Container>
-    );
-};
+);
 
 export default Movie;

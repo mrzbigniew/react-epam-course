@@ -7,8 +7,7 @@ import MovieItemDataModel from '../../services/models';
 
 import styles from './styles/styles.scss';
 
-const ResultsBody = ({ movies }) => {
-    return (
+const ResultsBody = ({ movies }) => (
         <div className={styles.resultsBody}>
             {movies && movies.length
                 ? movies.map(movie => (
@@ -20,15 +19,13 @@ const ResultsBody = ({ movies }) => {
                             release_year={movie.release_date.split('-')[0]}
                         />
                     </Link>
-                    )
-                )
+                    ))
                 : <NoResults />}
         </div>
-    );
-}
+);
 
 ResultsBody.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel))
-}
+  movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel)),
+};
 
 export default ResultsBody;

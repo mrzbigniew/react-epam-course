@@ -12,72 +12,72 @@ jest.mock('../error-boundary', () => 'ErrorBoundary');
 jest.mock('../cover', () => 'Cover');
 jest.mock('../not-found', () => 'NotFound');
 
-const middlewares = [thunk]
-const mockStore = configureStore(middlewares)
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 const initialState = {};
 
 describe('App', () => {
-    it('renders', () => {
-        fetch.mockResponseOnce(JSON.stringify({
-            data: [],
-            total: ''
-         }));
-        const store = mockStore({
-            movies: {
-                data: {
-                    data: []
-                }
-            }
-        });
-
-        const component = renderer.create(<App store={store} />);
-
-        expect(component.toJSON()).toMatchSnapshot();
+  it('renders', () => {
+    fetch.mockResponseOnce(JSON.stringify({
+      data: [],
+      total: '',
+    }));
+    const store = mockStore({
+      movies: {
+        data: {
+          data: [],
+        },
+      },
     });
 
-    describe('wrapper', () => {
-        let movies;
-        let store;
-        let wrapper;
+    const component = renderer.create(<App store={store} />);
 
-        beforeEach(() => {
-            fetch.resetMocks();
-        });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 
-        beforeEach(() => {
-            movies = {
-                data: {
-                    data: [ {
-                            title: 'movie 1'
-                        }, {
-                            title: 'movie 2'
-                        }
-                    ]
-                }
-            };
-        });
+  describe('wrapper', () => {
+    let movies;
+    let store;
+    let wrapper;
 
-        beforeEach(() => {
-            store = mockStore({
-                movies
-            });
-        });
-
-        it("should not dispatch loadMovies action if movies are loaded", () => {
-            fetch.mockResponseOnce(JSON.stringify({
-                data: {
-                    data: [{
-                        tittle: 'title 1'
-                    }, {
-                        tittle: 'title 2'
-                    }],
-                    total: 10
-                }
-            }));
-
-            wrapper = mount(<App store={store} />);
-
-            expect(store.getActions()).toEqual([]);
-        });
+    beforeEach(() => {
+      fetch.resetMocks();
     });
+
+    beforeEach(() => {
+      movies = {
+        data: {
+          data: [{
+            title: 'movie 1',
+          }, {
+            title: 'movie 2',
+          },
+          ],
+        },
+      };
+    });
+
+    beforeEach(() => {
+      store = mockStore({
+        movies,
+      });
+    });
+
+    it('should not dispatch loadMovies action if movies are loaded', () => {
+      fetch.mockResponseOnce(JSON.stringify({
+        data: {
+          data: [{
+            tittle: 'title 1',
+          }, {
+            tittle: 'title 2',
+          }],
+          total: 10,
+        },
+      }));
+
+      wrapper = mount(<App store={store} />);
+
+      expect(store.getActions()).toEqual([]);
+    });
+  });
 });

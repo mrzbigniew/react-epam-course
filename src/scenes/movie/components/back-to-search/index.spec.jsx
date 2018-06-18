@@ -11,55 +11,51 @@ import BackToSearch from './index';
 jest.mock('../../../../components/button', () => 'Button');
 
 describe('BackToSearch', () => {
-    it('should render', async () => {
-        const history = {
-            goBack: jest.fn()
-        };
-        const component = renderer.create(
-            <MockRouter>
-                <Route render={(props) => (
+  it('should render', async () => {
+    const history = {
+      goBack: jest.fn(),
+    };
+    const component = renderer.create(<MockRouter>
+                <Route render={props => (
                     <BackToSearch {...Object.assign(props, history)} />
                 )} />
-            </MockRouter>
-        );
-        expect(component.toJSON()).toMatchSnapshot();
-    });
+            </MockRouter>);
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 
-    describe('#wrapper', () => {
-        const history = {
-            goBack: jest.fn()
-        };
+  describe('#wrapper', () => {
+    const history = {
+      goBack: jest.fn(),
+    };
 
-        it('clicking on button should trigger history goBack method', () => {
-            const context = {
-                router: {
-                    route: {
-                        location: '',
-                        match: {
-                            url: '',
-                            params: {},
-                            path: ''
-                        }
-                    },
-                    history: {
-                        path: '',
-                        createHref: jest.fn(),
-                        push: jest.fn(),
-                        replace: jest.fn(),
-                        goBack: jest.fn()
-                    }
-                }
-            }
+    it('clicking on button should trigger history goBack method', () => {
+      const context = {
+        router: {
+          route: {
+            location: '',
+            match: {
+              url: '',
+              params: {},
+              path: '',
+            },
+          },
+          history: {
+            path: '',
+            createHref: jest.fn(),
+            push: jest.fn(),
+            replace: jest.fn(),
+            goBack: jest.fn(),
+          },
+        },
+      };
 
-            const wrapper = mount(
-                <Route render={(props) => (
+      const wrapper = mount(<Route render={props => (
                     <BackToSearch {...props} />
                 )} />, { context });
 
-            wrapper.find('.btn').at(0).simulate('click');
+      wrapper.find('.btn').at(0).simulate('click');
 
-            expect(context.router.history.goBack).toBeCalled();
-        });
-
+      expect(context.router.history.goBack).toBeCalled();
     });
+  });
 });

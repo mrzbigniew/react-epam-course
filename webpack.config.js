@@ -45,15 +45,15 @@ module.exports = function (env, options) {
     },
     module: {
       rules: [{
-        test: /\.js|\.jsx/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       }, {
-        test: /\.js/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
       }, {
-        test: /\.scss/,
+        test: /\.s?css/,
         // exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       }, {

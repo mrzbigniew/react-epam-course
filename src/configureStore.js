@@ -1,4 +1,5 @@
 /* eslint-disable prop-types */
+// @flow
 
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -18,7 +19,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-const configureStore = (initialState) => {
+const configureStore = (initialState?: StoreStateType) => {
   const store = createStore(
     persistedReducer,
     initialState,

@@ -5,24 +5,24 @@ import { shallow } from 'enzyme';
 import NoResults from './index';
 
 describe('NoResults', () => {
-    it('renders', () => {
-        const component = renderer.create(<NoResults />).toJSON();
+  it('renders', () => {
+    const component = renderer.create(<NoResults />).toJSON();
 
-        expect(component).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
+  });
+
+  describe('wrapper', () => {
+    it('renders element with no-results class name', () => {
+      const wrapper = shallow(<NoResults />);
+
+      expect(wrapper.hasClass('no-results')).toBeTruthy();
     });
 
-    describe('wrapper', () => {
-        it('renders element with no-results class name', () => {
-            const wrapper = shallow(<NoResults />);
+    it('renders content', () => {
+      const exceptedContent = 'No films found';
+      const wrapper = shallow(<NoResults />);
 
-            expect(wrapper.hasClass('no-results')).toBeTruthy();
-        });
-
-        it('renders content', () => {
-            const exceptedContent = 'No films found';
-            const wrapper = shallow(<NoResults />);
-
-            expect(wrapper.find('span').text()).toEqual(exceptedContent);
-        });
+      expect(wrapper.find('span').text()).toEqual(exceptedContent);
     });
+  });
 });

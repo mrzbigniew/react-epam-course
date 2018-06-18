@@ -1,18 +1,14 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/styles.scss';
-
-const Container = ({children}) =>  {
-    return (
+const Container = ({ children }) => (
         <div className="container-fluid p-0">
             {children}
         </div>
-    );
-}
+);
 
 Container.propTypes = {
-    children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default Container;
