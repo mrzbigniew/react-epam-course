@@ -9,6 +9,8 @@ import createSagaMiddleware, { END } from 'redux-saga';
 import { reducer } from './reducers';
 import { rootSaga } from './actions/movies';
 
+import type { StoreStateType } from './types/common-data-types';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
