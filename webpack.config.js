@@ -53,9 +53,20 @@ module.exports = function (env, options) {
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
       }, {
-        test: /\.s?css/,
-        // exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        test: /\.scss/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]-[hash:5]',
+              camelCase: true,
+            },
+          },
+          'sass-loader',
+        ],
       }, {
         test: /\.(ttf|eot|svg|woff|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         exclude: /node_modules/,

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
-import MovieItemDataModel from '../../services/models';
 
 import styles from './styles/styles.scss';
 
@@ -25,7 +24,7 @@ const ResultsBody = ({ movies }) => (
 );
 
 ResultsBody.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel)),
+  movies: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default ResultsBody;
