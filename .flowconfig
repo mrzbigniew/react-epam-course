@@ -3,8 +3,10 @@
 .*/coverage/.*
 
 [include]
+./src
 
 [libs]
+./lib
 
 [lints]
 

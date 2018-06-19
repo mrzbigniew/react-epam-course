@@ -2,7 +2,7 @@
     "name": "react-epam-course",
     "version": "v1.7.0",
     "description": "",
-    "main": "index.js",
+    "main": "lib/index.js",
     "scripts": {
         "test": "jest",
         "build:prod": "webpack-cli --mode production",
@@ -15,8 +15,6 @@
         "start-prod:ssr": "cross-env NODE_ENV=production node ./server",
         "build-prod:ssr": "cross-env NODE_ENV=production webpack --config ./webpack",
         "lint": "eslint ./src/** --cache --ignore-pattern .gitignore  --fix",
-        "build": "babel src/ -d lib/",
-        "prepublish": "npm run build",
         "flow": "flow",
         "storybook": "start-storybook -p 9001 -c .storybook"
     },
