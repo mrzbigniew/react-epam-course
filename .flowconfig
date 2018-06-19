@@ -6,7 +6,7 @@
 ./src
 
 [libs]
-./lib
+./flow-typed/.*
 
 [lints]
 
