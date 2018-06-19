@@ -1,6 +1,6 @@
 // @flow
 
-export type ApiMovieType = {
+declare type ApiMovieType = {
     id: number,
     title: string,
     tagline: string,
@@ -15,41 +15,56 @@ export type ApiMovieType = {
     runtime: number
 }
 
-export type ApiMoviesResponse = {
+declare type ApiMoviesResponse = {
     data: {
         data: ApiMovieType[],
         total: number
     }
 }
 
-export type StoreLoadingStatusType = {
-    islLading: boolean,
-    error: string
+declare type StoreLoadingStatusType = {
+    isLoading: boolean,
+    error: string | null
 }
 
-export type StoreMovieType = {
+declare type StoreMovieType = {
     data: ApiMovieType,
     loadStatus: StoreLoadingStatusType
 }
 
-export type StoreMoviesType = {
+declare type StoreMoviesType = {
     data: ApiMovieType[],
     loadStatus: StoreLoadingStatusType
 }
 
-export type StoreSearchType = {
+declare type StoreSearchType = {
     filter: string,
     text: string
 }
 
-export type StoreResultsType = {
+declare type StoreResultsType = {
     sort: string
 }
 
-export type StoreStateType = {
+declare type StoreStateType = {
     movie: StoreMovieType,
     movies: StoreMoviesType,
     spinner: boolean,
     search: StoreSearchType,
     results: StoreResultsType,
+}
+
+declare type LoadStatusAction = {
+    type: string,
+    error?: string
+};
+
+declare type MovieDataActionType = {
+    action: string,
+    data?: MovieDataActionType
+}
+
+declare type MovieIdActionType = {
+    action: string,
+    id?: number
 }

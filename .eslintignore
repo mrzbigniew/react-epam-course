@@ -3,3 +3,4 @@ node_modules
 /**/*.scss
 /**/*.html
 flow-typed
+__snapshots__

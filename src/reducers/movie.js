@@ -1,4 +1,5 @@
 /* eslint-disable prop-types */
+// @flow
 
 import { combineReducers } from 'redux';
 
@@ -11,10 +12,10 @@ export const MOVIE_DATA_GET = 'MOVIE_DATA_GET';
 export const MOVIE_DATA_SET = 'MOVIE_DATA_SET';
 export const MOVIE_DATA_CLEAR = 'MOVIE_DATA_CLEAR';
 
-const loadStatus = (state = {
+const loadStatus = (state: StoreLoadingStatusType = {
   isLoading: false,
   error: null,
-}, action) => {
+}, action: LoadStatusAction) => {
   switch (action.type) {
     case MOVIE_LOADING_START:
       return {
@@ -38,7 +39,7 @@ const loadStatus = (state = {
   }
 };
 
-const data = (state = null, action) => {
+const data = (state: StoreMovieType | null = null, action: MovieDataActionType) => {
   switch (action.type) {
     case MOVIE_DATA_SET:
       return {
@@ -51,7 +52,7 @@ const data = (state = null, action) => {
   }
 };
 
-const id = (state = null, action) => {
+const id = (state: number = null, action: MovieIdActionType) => {
   switch (action.type) {
     case MOVIE_DATA_GET:
       return action.id;

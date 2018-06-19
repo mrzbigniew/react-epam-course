@@ -10,7 +10,7 @@ import {
   MOVIES_DATA_SET,
 } from '../actions/movies';
 
-const loadStatus = (state = {
+const loadStatus = (state: StoreLoadingStatusType = {
   isLoading: false,
   error: null,
 }, action) => {
