@@ -28,7 +28,12 @@
         "prop-types": "off",
         "func-names": "off",
         "import/no-unresolved": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "flowtype/no-types-missing-file-annotation": "off",
+        "import/no-duplicates": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "no-undef": "off"
     },
     "globals": {
         "module": true
