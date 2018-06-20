@@ -52,7 +52,7 @@ const data = (state: StoreMovieType | null = null, action: MovieDataActionType) 
   }
 };
 
-const id = (state: number = null, action: MovieIdActionType) => {
+const id = (state: number | null = null, action: MovieIdActionType) => {
   switch (action.type) {
     case MOVIE_DATA_GET:
       return action.id;

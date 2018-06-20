@@ -56,15 +56,15 @@ declare type StoreStateType = {
 
 declare type LoadStatusAction = {
     type: string,
-    error?: string
+    error?: string | null
 };
 
 declare type MovieDataActionType = {
-    action: string,
-    data?: MovieDataActionType
+    type: string,
+    data?: MovieDataActionType | null
 }
 
 declare type MovieIdActionType = {
-    action: string,
-    id?: number
+    type: string,
+    id?: number | null
 }
