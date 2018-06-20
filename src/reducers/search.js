@@ -1,10 +1,11 @@
 /* eslint-disable prop-types */
+// @flow
 
 import { combineReducers } from 'redux';
 
 import { SEARCH_BY_TITLE, SET_SEARCH_TEXT, SET_SEARCH_FILTER } from '../actions/search';
 
-const filter = (state = SEARCH_BY_TITLE, action) => {
+const filter = (state: string = SEARCH_BY_TITLE, action: { type: string, value: string}) => {
   switch (action.type) {
     case SET_SEARCH_FILTER:
       return action.value;
@@ -13,7 +14,7 @@ const filter = (state = SEARCH_BY_TITLE, action) => {
   }
 };
 
-const text = (state = '', action) => {
+const text = (state: string = '', action: { type: string, value: string }) => {
   switch (action.type) {
     case SET_SEARCH_TEXT:
       return action.value;

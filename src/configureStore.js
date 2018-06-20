@@ -2,7 +2,8 @@
 // @flow
 
 import { createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer, storage } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware, { END } from 'redux-saga';
 
 import { reducer } from './reducers';

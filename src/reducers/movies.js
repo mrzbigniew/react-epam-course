@@ -13,7 +13,7 @@ import {
 const loadStatus = (state: StoreLoadingStatusType = {
   isLoading: false,
   error: null,
-}, action) => {
+}, action: LoadStatusAction) => {
   switch (action.type) {
     case MOVIES_DATA_LOADING_START:
       return {
@@ -35,10 +35,10 @@ const loadStatus = (state: StoreLoadingStatusType = {
   }
 };
 
-const data = (state = {
+const data = (state: StoreMoviesDataType = {
   data: [],
   total: 0,
-}, action) => {
+}, action: MoviesActionDataType) => {
   switch (action.type) {
     case MOVIES_DATA_SET:
       return {

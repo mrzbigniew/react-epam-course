@@ -15,11 +15,13 @@ declare type ApiMovieType = {
     runtime: number
 }
 
+declare type StoreMoviesDataType = {
+    data: ApiMovieType[],
+    total: number
+}
+
 declare type ApiMoviesResponse = {
-    data: {
-        data: ApiMovieType[],
-        total: number
-    }
+    data: StoreMoviesDataType
 }
 
 declare type StoreLoadingStatusType = {
@@ -67,4 +69,21 @@ declare type MovieDataActionType = {
 declare type MovieIdActionType = {
     type: string,
     id?: number | null
+}
+
+declare type MoviesActionDataType = {
+    type: string,
+    data?: ApiMovieType[],
+    total: number
+}
+
+
+declare type StoreResultsStateType = {
+    sort: string
+}
+
+
+declare type ResultsActionType = {
+    type: string,
+    value: string
 }
