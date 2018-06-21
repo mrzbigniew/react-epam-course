@@ -24,7 +24,7 @@ const ResultsBody = ({ movies }) => (
 );
 
 ResultsBody.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
+  movies: PropTypes.any,
 };
 
 export default ResultsBody;

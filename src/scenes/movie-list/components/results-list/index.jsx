@@ -33,7 +33,7 @@ const ResultsListComponent = ({ movies, sort, match }) => {
 };
 
 ResultsListComponent.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
+  movies: PropTypes.any,
   match: PropTypes.object,
   sort: PropTypes.string,
 };
