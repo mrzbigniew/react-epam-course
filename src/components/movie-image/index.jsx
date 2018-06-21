@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImageCover from '../image-cover';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 class MovieImage extends React.Component {
     state = {
-        loaded: false
+        loaded: true,
+        error: false
     }
 
     render() {
@@ -15,7 +16,7 @@ class MovieImage extends React.Component {
             position: 'relative'
         };
         return (
-            <div className="movie-image" style={style}>
+            <div className={styles.movieImage} style={style}>
                 {
                     !this.state.loaded
                         ? (

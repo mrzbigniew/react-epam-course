@@ -5,6 +5,8 @@
         "stage-2"
     ],
     "plugins": [
-        "transform-decorators-legacy"
+        "dynamic-import-webpack",
+        "transform-decorators-legacy",
+        "transform-regenerator"
     ]
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './configureStore';
+import { BrowserRouter, StaticRouter } from 'react-router-dom';
 
 import Root from './components/root';
 
@@ -9,13 +10,15 @@ const { store, persistor } = configureStore();
 window.store = store;
 window.persistor = persistor;
 
-// store.subscribe(() => {
-//     console.log(store.getState()) // eslint-disable-line
-// });
+let router = BrowserRouter;
+
+if(process.env === 'production') {
+    router = StaticRouter;
+}
 
 const render = () => {
-    ReactDOM.render(
-        <Root store={store} persistor={persistor} />,
+    ReactDOM.hydrate(
+        <Root store={store} persistor={persistor} router={router} />,
         document.getElementById('app')
     );
 }

@@ -56,8 +56,6 @@ describe('BackToSearch', () => {
                     <BackToSearch {...props} />
                 )} />, { context });
 
-            console.log(wrapper.find('.btn').debug());
-
             wrapper.find('.btn').at(0).simulate('click');
 
             expect(context.router.history.goBack).toBeCalled();

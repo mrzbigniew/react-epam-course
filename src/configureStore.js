@@ -1,9 +1,13 @@
 import { createStore, applyMiddleware, compose }  from 'redux';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
-import  storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
+import createSagaMiddleware, { END } from 'redux-saga';
 
-import rootReducer from './reducers'
+import { reducer } from './reducers';
+import { rootSaga } from './actions/movies';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: 'movies',
@@ -11,17 +15,23 @@ const persistConfig = {
   whitelist: ['movies']
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, reducer)
 
-const configureStore = () => {
+const configureStore = (initialState) => {
     const store = createStore(
       persistedReducer,
-      compose(
-        applyMiddleware(thunk),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-      )
+      initialState,
+      applyMiddleware(sagaMiddleware)
     );
+
+    if(!initialState) {
+      sagaMiddleware.run(rootSaga);
+      store.runSaga = () => sagaMiddleware.run(rootSaga);
+      store.close = () => store.dispatch(END);
+    }
+
     const persistor = persistStore(store);
+
     return { store, persistor };
 }
 

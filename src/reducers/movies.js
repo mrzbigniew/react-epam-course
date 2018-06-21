@@ -55,7 +55,7 @@ const data = (state = {
     }
 }
 
-const movies = combineReducers({
+export const movies = combineReducers({
     data,
     loadStatus,
 });

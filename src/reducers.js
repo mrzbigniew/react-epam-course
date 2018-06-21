@@ -1,12 +1,19 @@
-import { combineReducers } from 'redux';
+import {
+    combineReducers
+} from 'redux';
+import {
+    all
+} from 'redux-saga/effects';
 
-import movies from './reducers/movies';
+import {
+    movies
+} from './reducers/movies';
 import movie from './reducers/movie';
 import spinner from './reducers/spinner';
 import search from './reducers/search';
 import results from './reducers/results';
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
     movie,
     movies,
     spinner,

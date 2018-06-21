@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const SearchField = ({ onChange }) => {
     return (
-        <div className="search-field">
-            <div className="form-group">
+        <div className={styles.searchField}>
+            <div className={`form-group ${styles.formGroup}`}>
                 <label
                     htmlFor="searchInput"
-                    className="control-label text-uppercase font-montserrat">Search for movie
+                    className={`control-label font-montserrat ${styles.textUppercase} ${styles.controlLabel}`}>Search for movie
                 </label>
                 <div>
                     <input id="searchInput"
-                        className="form-control"
+                        className={`form-control ${styles.formControl}`}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder={`type to search`}
                         autoComplete={`off`}

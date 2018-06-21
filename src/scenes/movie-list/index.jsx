@@ -9,14 +9,14 @@ import Logo from '../../components/logo';
 import SearchForm from './components/search-form';
 import ResultsList from './components/results-list';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const MovieList = () => {
     return (
         <Container>
             <Header>
                 <Logo />
-                <SearchForm />
+                <SearchForm className={styles.searchForm}/>
             </Header>
             <Content>
                 <ResultsList />

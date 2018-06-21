@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../spinner';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const Cover = ({ visible }) => {
     return (
-        <div className="cover" style={{ display: visible ? 'flex' : 'none' }}>
+        <div className={styles.cover} style={{ display: visible ? 'flex' : 'none' }}>
             <Spinner />
         </div>
     );

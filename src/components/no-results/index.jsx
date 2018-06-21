@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const NoResults = () => {
     return (
-        <div className="no-results">
+        <div className={styles.noResultsFound}>
             <span>No films found</span>
         </div>
     )

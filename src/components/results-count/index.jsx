@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const ResultsCount = ({ moviesCount }) => {
     return (
-        <span className="results-count">{moviesCount || 'No'} movies found</span>
+        <span className={styles.resultsCount}>{moviesCount || 'No'} movies found</span>
     );
 }
 

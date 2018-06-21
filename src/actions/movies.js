@@ -1,4 +1,6 @@
-import { fetchMovies } from "../services/api/movies";
+import { call, put, all, takeLatest } from 'redux-saga/effects';
+
+import { fetchMovies, fetchMoviesAsync } from "../services/api/movies";
 import { showSpinner, hideSpinner } from "./spinner";
 
 export const MOVIES_DATA_LOADING_START = 'MOVIES_DATA_LOADING_START';
@@ -45,4 +47,21 @@ export const loadMovies = () => {
       dispatch(hideSpinner());
     }
   }
+}
+
+export function* getMovies() {
+  const movies = yield fetchMovies();
+  yield put(moviesDataSet(movies));
+}
+
+export function* moviesSaga() {
+  yield all([
+    getMovies()
+  ]);
+}
+
+export function* rootSaga() {
+  yield all([
+      moviesSaga(),
+  ]);
 }

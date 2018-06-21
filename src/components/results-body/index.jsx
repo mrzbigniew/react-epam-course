@@ -5,11 +5,11 @@ import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
 import MovieItemDataModel from '../../services/models';
 
-import './styles/styles.scss';
+import styles from './styles/styles.scss';
 
 const ResultsBody = ({ movies }) => {
     return (
-        <div className="results-body">
+        <div className={styles.resultsBody}>
             {movies && movies.length
                 ? movies.map(movie => (
                     <Link key={movie.id} to={`/film/${movie.id}`}>
