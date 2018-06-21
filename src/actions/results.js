@@ -1,4 +1,5 @@
 /* eslint-disable prop-types, no-nested-ternary */
+import { List } from 'immutable';
 import { SEARCH_BY_TITLE } from './search';
 
 export const SET_SEARCH_RESULTS_DATA = 'SET_SEARCH_RESULTS_DATA';
@@ -17,7 +18,7 @@ export const getFiltered = (data, filter, text) => (filter && text
         )
     ))
   )
-  : []);
+  : List());
 
 export const sortResults = (data, sort) => data.sort((current, next) => {
   const currentValue = (sort === SORT_BY_RATING ? current.vote_average : current.release_date).toString().toLowerCase();

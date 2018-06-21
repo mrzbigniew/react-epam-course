@@ -47,7 +47,7 @@ const MovieDetailsComponent = ({ movies, match, className }) => {
 };
 
 MovieDetailsComponent.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.any,
   match: PropTypes.object,
   className: PropTypes.string,
 };

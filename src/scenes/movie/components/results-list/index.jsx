@@ -26,7 +26,7 @@ const ResultsListComponent = ({ movies, match }) => {
 };
 
 ResultsListComponent.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.any,
   match: PropTypes.object,
 };
 
