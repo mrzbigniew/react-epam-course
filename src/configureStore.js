@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware, { END } from 'redux-saga';
+import immutableTransform from 'redux-persist-transform-immutable';
 
 import { reducer } from './reducers';
 import { rootSaga } from './actions/movies';
@@ -15,6 +16,7 @@ const persistConfig = {
   key: 'movies',
   storage,
   whitelist: ['movies'],
+  transforms: [immutableTransform()],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

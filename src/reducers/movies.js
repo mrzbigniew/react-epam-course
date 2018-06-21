@@ -1,5 +1,5 @@
 /* eslint-disable prop-types */
-// import { List } from 'immutable';
+import { List } from 'immutable';
 import { combineReducers } from 'redux';
 
 import {
@@ -36,18 +36,18 @@ const loadStatus = (state: StoreLoadingStatusType = {
 };
 
 const data = (state: StoreMoviesDataType = {
-  data: [],
+  data: List(),
   total: 0,
 }, action: MoviesActionDataType) => {
   switch (action.type) {
     case MOVIES_DATA_SET:
       return {
-        data: action.data,
+        data: List(action.data),
         total: action.total,
       };
     case MOVIES_DATA_CLEAN:
       return {
-        data: [],
+        data: List(),
         total: 0,
       };
     default:

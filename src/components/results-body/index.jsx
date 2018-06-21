@@ -8,7 +8,7 @@ import styles from './styles/styles.scss';
 
 const ResultsBody = ({ movies }) => (
         <div className={styles.resultsBody}>
-            {movies && movies.length
+            {movies && !movies.isEmpty()
                 ? movies.map(movie => (
                     <Link key={movie.id} to={`/film/${movie.id}`}>
                         <ResultsItem
