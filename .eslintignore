@@ -1,1 +1,7 @@
 dist/**/*.*
+node_modules
+/**/*.scss
+/**/*.html
+flow-typed
+__snapshots__
+/**/*.md

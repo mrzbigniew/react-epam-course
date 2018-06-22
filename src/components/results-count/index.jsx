@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './styles/styles.scss';
 
-const ResultsCount = ({ moviesCount }) => {
-    return (
+const ResultsCount = ({ moviesCount }) => (
         <span className={styles.resultsCount}>{moviesCount || 'No'} movies found</span>
-    );
-}
+);
 
 ResultsCount.propTypes = {
-    moviesCount: PropTypes.number
-}
+  moviesCount: PropTypes.number,
+};
 
-export default  ResultsCount;
+export default ResultsCount;

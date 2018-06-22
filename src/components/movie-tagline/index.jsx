@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './styles/styles.scss';
 
-const MovieTagline = ({tagline}) => {
-    return (
+const MovieTagline = ({ tagline }) => (
         <span className={styles.movieTagline}>{tagline}</span>
-    )
-}
+);
 
 MovieTagline.propTypes = {
-    tagline: PropTypes.string.isRequired
-}
+  tagline: PropTypes.string.isRequired,
+};
 
 export default MovieTagline;

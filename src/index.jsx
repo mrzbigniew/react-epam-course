@@ -1,9 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import configureStore from './configureStore';
+import React from 'react'; // eslint-disable-line
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
-import Root from './components/root';
+import configureStore from './configureStore';
+
+import Root from './components/root'; // eslint-disable-line
 
 const { store, persistor } = configureStore();
 
@@ -12,15 +13,15 @@ window.persistor = persistor;
 
 let router = BrowserRouter;
 
-if(process.env === 'production') {
-    router = StaticRouter;
+if (process.env === 'production') {
+  router = StaticRouter;
 }
 
 const render = () => {
-    ReactDOM.hydrate(
-        <Root store={store} persistor={persistor} router={router} />,
-        document.getElementById('app')
-    );
-}
+  ReactDOM.hydrate(
+        <Root store={store} router={router} persistor={persistor}/>,
+        document.getElementById('app'),
+  );
+};
 
 render();

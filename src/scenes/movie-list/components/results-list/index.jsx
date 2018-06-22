@@ -12,11 +12,11 @@ import movie from '../../../../reducers/movie';
 
 import { SORT_BY_RATING, SORT_BY_RELEASE_DATE, getFiltered, sortResults } from '../../../../actions/results';
 
-let ResultsList = ({ movies, sort, match }) => {
-    const text = match.params.text;
-    const filter = match.params.filter;
-    const results = sortResults(getFiltered(movies, filter, text), sort);
-    return (
+const ResultsListComponent = ({ movies, sort, match }) => {
+  const { text, filter } = match.params;
+
+  const results = sortResults(getFiltered(movies, filter, text), sort);
+  return (
         <Content>
             <Navbar className="navbar-expand-lg navbar-light bg-light justify-content-between">
                 <ResultsCount moviesCount={results.length} />
@@ -29,20 +29,18 @@ let ResultsList = ({ movies, sort, match }) => {
                 <ResultsBody movies={results} />
             </Content>
         </Content>
-    );
+  );
 };
 
-ResultsList.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.object),
-    match: PropTypes.object,
-    sort: PropTypes.string
-}
+ResultsListComponent.propTypes = {
+  movies: PropTypes.any,
+  match: PropTypes.object,
+  sort: PropTypes.string,
+};
 
-ResultsList = withRouter(connect(
-    (state) => ({
-        movies: state.movies.data.data,
-        sort: state.results.sort
-    })
-)(ResultsList));
+const ResultsList = withRouter(connect(state => ({
+  movies: state.movies.data.data,
+  sort: state.results.sort,
+}))(ResultsListComponent));
 
 export default ResultsList;

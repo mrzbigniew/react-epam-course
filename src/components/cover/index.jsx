@@ -6,16 +6,14 @@ import Spinner from '../spinner';
 
 import styles from './styles/styles.scss';
 
-const Cover = ({ visible }) => {
-    return (
+const Cover = ({ visible }) => (
         <div className={styles.cover} style={{ display: visible ? 'flex' : 'none' }}>
             <Spinner />
         </div>
-    );
-}
+);
 
 Cover.propTypes = {
-    visible: PropTypes.bool
+  visible: PropTypes.bool,
 };
 
-export default connect((state) => ({ visible: state.spinner }))(Cover);
+export default connect(state => ({ visible: state.spinner }))(Cover);

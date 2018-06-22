@@ -5,24 +5,24 @@ import { shallow } from 'enzyme';
 import Navbar from './index';
 
 describe('Navbar', () => {
-    it('renders', () => {
-        const component = renderer.create(<Navbar><span>Some navbar content</span></Navbar>).toJSON();
+  it('renders', () => {
+    const component = renderer.create(<Navbar><span>Some navbar content</span></Navbar>).toJSON();
 
-        expect(component).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
+  });
+
+  describe('wrapper', () => {
+    it('renders element with navbar class name', () => {
+      const wrapper = shallow(<Navbar><span></span></Navbar>);
+
+      expect(wrapper.hasClass('navbar')).toBeTruthy();
     });
 
-    describe('wrapper', () => {
-        it('renders element with navbar class name', () => {
-            const wrapper = shallow(<Navbar><span></span></Navbar>);
+    it('renders childrens', () => {
+      const exceptedContent = 'test content';
+      const wrapper = shallow(<Navbar>{exceptedContent}</Navbar>);
 
-            expect(wrapper.hasClass('navbar')).toBeTruthy();
-        });
-
-        it('renders childrens', () => {
-            const exceptedContent = 'test content';
-            const wrapper = shallow(<Navbar>{exceptedContent}</Navbar>);
-
-            expect(wrapper.text()).toEqual(exceptedContent);
-        });
+      expect(wrapper.text()).toEqual(exceptedContent);
     });
+  });
 });

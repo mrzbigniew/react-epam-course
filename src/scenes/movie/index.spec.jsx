@@ -13,9 +13,9 @@ jest.mock('./components/movie-details', () => 'MovieDetails');
 jest.mock('./components/results-list', () => 'ResultsList');
 
 describe('Movie', () => {
-    it('should render', () => {
-        const component = renderer.create(<Movie />);
+  it('should render', () => {
+    const component = renderer.create(<Movie />);
 
-        expect(component.toJSON()).toMatchSnapshot();
-    });
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import NoResults from '../no-results/';
 import ResultsItem from '../results-item/';
-import MovieItemDataModel from '../../services/models';
 
 import styles from './styles/styles.scss';
 
-const ResultsBody = ({ movies }) => {
-    return (
+const ResultsBody = ({ movies }) => (
         <div className={styles.resultsBody}>
-            {movies && movies.length
+            {movies && !movies.isEmpty()
                 ? movies.map(movie => (
                     <Link key={movie.id} to={`/film/${movie.id}`}>
                         <ResultsItem
@@ -20,15 +18,13 @@ const ResultsBody = ({ movies }) => {
                             release_year={movie.release_date.split('-')[0]}
                         />
                     </Link>
-                    )
-                )
+                    ))
                 : <NoResults />}
         </div>
-    );
-}
+);
 
 ResultsBody.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape(MovieItemDataModel))
-}
+  movies: PropTypes.any,
+};
 
 export default ResultsBody;

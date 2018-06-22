@@ -1,15 +1,13 @@
+/* eslint-disable prop-types, max-len */
+
 import 'isomorphic-fetch';
-import React from 'react';
-import {
-  renderToString
-} from 'react-dom/server';
-import {
-  StaticRouter
-} from 'react-router-dom';
-import Root from './components/root';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import Loadable from 'react-loadable';
+
+import Root from './components/root'; // eslint-disable-line
 import configureStore from './configureStore';
 import { setSearchFilter, setSearchText } from './actions/search';
-import Loadable from 'react-loadable';
 
 function renderHTML(html, preloadedState) {
   return `
@@ -81,7 +79,7 @@ export default function serverRenderer() {
 
     const {
       store,
-      persistor
+      persistor,
     } = configureStore();
 
     if (req.url.indexOf('%20') !== -1) {
@@ -124,7 +122,7 @@ export default function serverRenderer() {
 
       Loadable.preloadAll().then(() => {
         res.send(renderHTML(htmlString, preloadedState));
-      })
+      });
     });
 
     store.close();
